@@ -1,4 +1,4 @@
-**QComboBox 的选中时触发事件**
+### QComboBox 的选中时触发事件
 
 在 QComboBox 中，当用户选择下拉列表框中的项时，会触发 `activated` 和 `currentIndexChanged` 两个事件。这两个事件在用户选择不同的项时触发的时机略有不同。
 
