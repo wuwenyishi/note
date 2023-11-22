@@ -3,6 +3,7 @@
 * [C++ 哪些参数需要释放内存](#c-哪些参数需要释放内存)
 * [BaseServer server(); 这种需要delete server 吗](#baseserver-server-这种需要delete-server-吗)
 * [QComboBox 的选中时触发事件](#qcombobox-的选中时触发事件)
+* [QPushButton添加icon](#qpushbutton添加icon)
 
 ------
 
@@ -99,5 +100,24 @@ connect(comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), [=](int i
 
 
 
+## QPushButton添加icon
 
+```c++
+#include <QApplication>
+#include <QPushButton>
+#include <QIcon>
+
+int main(int argc, char *argv[]) {
+    QApplication app(argc, argv);
+    
+    QPushButton button("Button");
+    
+    QIcon icon("path/to/icon.png");
+    button.setIcon(icon);
+
+    button.show();
+
+    return app.exec();
+}
+```
 
