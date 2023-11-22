@@ -1,4 +1,4 @@
-**C++ 哪些参数需要释放内存**
+### C++ 哪些参数需要释放内存
 
 在C++中，需要手动释放内存的参数主要包括以下几种情况：
 
@@ -46,7 +46,7 @@ delete obj; // 释放对象内存
 
 
 
-**BaseServer server(); 这种需要delete server 吗**
+### BaseServer server(); 这种需要delete server 吗
 
 在C++中，当你使用 `new` 关键字创建对象时，你需要使用 `delete` 关键字手动释放内存。但是，在你提供的代码片段 `BaseServer server();` 中，并没有使用 `new` 关键字来创建对象，而是直接调用了 `BaseServer` 的默认构造函数来创建对象。
 
