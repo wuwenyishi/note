@@ -2,14 +2,14 @@
 
 
 
-## 231121
+# 231121
 
 * [所有模块 Qt 5.15 中文文档编制,帮助,手册,教程](http://qt5.digitser.top/5.15/zh-CN/qtmodules.html)  
 * [NekoSilverFox/OpenGL: 📽 基于 Qt & OpenGL 的计算机图形学实例](https://github.com/NekoSilverFox/OpenGL)  
 
 
 
-### C++ 哪些参数需要释放内存
+## C++ 哪些参数需要释放内存
 
 在C++中，需要手动释放内存的参数主要包括以下几种情况：
 
@@ -57,7 +57,7 @@ delete obj; // 释放对象内存
 
 
 
-### BaseServer server(); 这种需要delete server 吗
+## BaseServer server(); 这种需要delete server 吗
 
 在C++中，当你使用 `new` 关键字创建对象时，你需要使用 `delete` 关键字手动释放内存。但是，在你提供的代码片段 `BaseServer server();` 中，并没有使用 `new` 关键字来创建对象，而是直接调用了 `BaseServer` 的默认构造函数来创建对象。
 
@@ -71,7 +71,7 @@ delete obj; // 释放对象内存
 
 
 
-### QComboBox 的选中时触发事件
+## QComboBox 的选中时触发事件
 
 在 QComboBox 中，当用户选择下拉列表框中的项时，会触发 `activated` 和 `currentIndexChanged` 两个事件。这两个事件在用户选择不同的项时触发的时机略有不同。
 
@@ -95,4 +95,5 @@ connect(comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), [=](int i
 
 
 
-## 231122
+# 231122
+
