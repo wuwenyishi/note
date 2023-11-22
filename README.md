@@ -1,13 +1,3 @@
-# 目录
-
-- [231121](#231121)
-  * [C++ 哪些参数需要释放内存](#C++ 哪些参数需要释放内存)
-  * [BaseServer server(); 这种需要delete server 吗](#BaseServer server(); 这种需要delete server 吗)
-  * [QComboBox 的选中时触发事件](#QComboBox 的选中时触发事件)
-- [231122](#231122)
-
-
-
 
 
 # 231121
