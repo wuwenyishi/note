@@ -1,8 +1,14 @@
+# 目录
+
 - [231121](#231121)
   * [C++ 哪些参数需要释放内存](#c-哪些参数需要释放内存)
   * [BaseServer server(); 这种需要delete server 吗](#baseserver-server-这种需要delete-server-吗)
   * [QComboBox 的选中时触发事件](#qcombobox-的选中时触发事件)
 - [231122](#231122)
+
+------
+
+
 
 # 231121
 
@@ -94,6 +100,8 @@ connect(comboBox, QOverload<int>::of(&QComboBox::currentIndexChanged), [=](int i
 ```
 
 根据您的需求，您可以选择连接这两个事件中的一个或两个，以便在用户选择下拉列表框中的项时触发相应的操作或逻辑。
+
+------
 
 
 
