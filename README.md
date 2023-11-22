@@ -1,3 +1,11 @@
+## 目录
+
+- [231121](#231121)
+  * [C++ 哪些参数需要释放内存](#C++ 哪些参数需要释放内存)
+  * [BaseServer server(); 这种需要delete server 吗](#BaseServer server(); 这种需要delete server 吗)
+  * 
+- [231122](#231122)
+
 
 
 
