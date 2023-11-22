@@ -1,4 +1,8 @@
-
+- [231121](#231121)
+  * [C++ 哪些参数需要释放内存](#c-------------)
+  * [BaseServer server(); 这种需要delete server 吗](#baseserver-server--------delete-server--)
+  * [QComboBox 的选中时触发事件](#qcombobox---------)
+- [231122](#231122)
 
 # 231121
 
