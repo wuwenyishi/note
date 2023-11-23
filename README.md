@@ -9,11 +9,6 @@
 
 
 
-* [所有模块 Qt 5.15 中文文档编制,帮助,手册,教程](http://qt5.digitser.top/5.15/zh-CN/qtmodules.html)  
-* [NekoSilverFox/OpenGL: 📽 基于 Qt & OpenGL 的计算机图形学实例](https://github.com/NekoSilverFox/OpenGL)  
-
-
-
 ## C++ 哪些参数需要释放内存
 
 在C++中，需要手动释放内存的参数主要包括以下几种情况：
