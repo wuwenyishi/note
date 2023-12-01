@@ -12,7 +12,7 @@
 
 如图所示在光标位置输入slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX按回车键
 
-第二行光标位置输入slmgr /skms [http://kms.03k.org](https://link.zhihu.com/?target=http%3A//kms.03k.org)按回车键
+第二行光标位置输入slmgr /skms kms.03k.org按回车键
 
 第三行光标位置输入slmgr /ato按回车键
 
