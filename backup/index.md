@@ -6,7 +6,17 @@
 
 ## win 10 专业版激活方法
 
+1.鼠标右击“开始”
 
+2.选择Windows PowerShell（管理员）（A） 单击点击打开
+
+如图所示在光标位置输入slmgr /ipk W269N-WFGWX-YVC9B-4J6C9-T83GX按回车键
+
+第二行光标位置输入slmgr /skms [http://kms.03k.org](https://link.zhihu.com/?target=http%3A//kms.03k.org)按回车键
+
+第三行光标位置输入slmgr /ato按回车键
+
+3.激活成功，
 
 
 
