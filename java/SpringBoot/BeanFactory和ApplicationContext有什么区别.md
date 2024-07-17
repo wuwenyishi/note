@@ -1,0 +1,19 @@
+
+## 相同
+
+* spring提供了两种不同的IOC容器，一个是BeanFactory，另外一个就是ApplocationContext，他们都是java 接口,ApplicationContext 继承于BeanFactory。
+
+* 他们都可以用来配置XML属性，也支持属性的自动注入。
+
+* 而 ListableBeanFactory 继承于BeanFactory。BeanFactory和ApplocationContext都是提供了一种方式，使用getBean("bean name")获取bean。
+
+  
+
+## 不同
+
+* 当你调用getBean()方法时，BeanFactory仅实例化bean，而ApplocationContext在启动容器的时候实例化单例bean，不会等调用getBean时才实例化。
+* BeanFactory不支持国际化，即i18n，但ApplocationContext提供了支持。
+* BeanFactory于ApplocationContext之间的另一个区别是能够将事件发布到注册为监听的bean。
+* BeanFactory的一个核心实现是XMLBeanFactory，而ApplocationContext的一个核心实现是classPathXmlApplocationContext，Web容器的环境我们使用WebApplocationContext并且添加了getServietContext方法。
+* 如果使用自动注入并使用BeanFactory，则需要使用API注册AutoWiredBeanPostProcessor，如果使用ApplocationContext则可以使用XML进行配置。
+* 简而言之，BeanFactory提供了基本的IOC和DI功能，而ApplocationContext提供了高级的功能，BeanFactory可以用于测试和非生产，单ApplocationContext是功能更丰富的容器实现，应该优先于BeanFactory。
