@@ -506,7 +506,7 @@ sq1解开关联后的计划如下：
 ![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyMjRFee25NhQQvLa7NMmHp1PhTUmDvm6jo7TU9icUiaMW17HcK45eXFpw/0?wx_fmt=png&from=appmsg)
 
 sql2解开关联后的计划如下：
-![image.png](https://xuemingde.com/pages/image/2022/03/220828.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwy7H88sFLvUTZqb3WicJadtMJArzonpM8IUg50wc3Licw0kBAia0micRdfSQ/0?wx_fmt=png&from=appmsg)
 
 对于sql1来说，从语义上理解，外部查询的每一行带入子查询里扫过的行都是没有重叠的，所以代价和innerjoin on等值条件是一样的。再加上同样的外部行对应的子查询中min的结果相同可以应用early agg从而可以进一步优化。
 
