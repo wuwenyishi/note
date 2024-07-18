@@ -4,7 +4,7 @@
 
 ### 创建制品仓库
 
-![093128GCejqP](https://xuemingde.com/pages/image/2024/04/24/093128GCejqP.png)
+![093128GCejqP](https://xuemingde.com/pages/image/2024/04/24/093128GCejqP1.png)
 
 > 假设仓库名称为docker
 
