@@ -20,9 +20,10 @@
 
   ![093536ho52bf](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyPQTWPjJYMby6GXLLzvFbKm9PelXkhgzwGv3PSicj8My6uxuRjp5rxxg/0?wx_fmt=png&from=appmsg)
 
-- 用户名和密码就是coding的登录名和密码
+- 用户名和密码就是coding的登录名和密码   
 
-- 服务器
+- 服务器    
+
   ![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwy7VmOjJIGqf0heRibZIE3lvuRh2LBfOAfkDicWTSx5oxb9bIWpf28pUsw/0?wx_fmt=png&from=appmsg)
 
 > 最好本地安装docker桌面版，更容易操作
@@ -35,17 +36,17 @@
 
 
 
-选中某个镜像 鼠标右键
+选中某个镜像 鼠标右键  
 ![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyVib4QL1VHjA4OWzmVND0VSEAjJ29WwAqDLzKP9sqHWqKicNPHtwdHMuw/0?wx_fmt=png&from=appmsg)
 
 ![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwy4pTN4WIcJhqV0sTPW66xuDSOaUKVckZibm15btg28zPFIqfXMqOfOmA/0?wx_fmt=png&from=appmsg)
 
-- 注册表
-  选择添加的注册表
-- 仓库
-  填写与注册表的地址一致
+- 注册表  
+  选择添加的注册表  
+- 仓库  
+  填写与注册表的地址一致  
   ![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyPQTWPjJYMby6GXLLzvFbKm9PelXkhgzwGv3PSicj8My6uxuRjp5rxxg/0?wx_fmt=png&from=appmsg)
-- 标签
+- 标签  
   就是镜像的tag，可以是镜像的版本号，例如v1.0.0；可以是其他；但不能有 `: `号，可以是`-`
 
 
