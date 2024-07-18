@@ -26,6 +26,4 @@ spring:
         physical-strategy: org.springframework.boot.orm.jpa.hibernate.SpringPhysicalNamingStrategy
 ```
 
-
-
-![image-20220427125309634](https://cdn.jsdelivr.net/gh/wuwenyishi/shared@image/2022/04/27/1253-eL250t.png)
+![image.png](https://s2.loli.net/2024/07/18/5FYvop8qEKLrOQ9.png)
