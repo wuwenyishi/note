@@ -57,7 +57,7 @@ csharp
 
 一个ThreadLocal实例对应当前线程的一个对象实例，如果把ThreadLocal声明为某个类的实例变量不是静态变量，那么每次创建一个该类的实例就会导致一个新的对象实例被创建。而这些被创建的实例是同一个类的实例，于是同一个线程可能会访问到同一个类的不同实例，这即使不会导致错误，也会导致重复创建同样的对象。如果使用static修饰后，只要相应的类没有被垃圾回收掉，那么这个类就会持有相对应的ThreadLocal实例引用。
 
-![095015Mbi5fY](https://xuemingde.com/pages/image/2023/09/20/095015Mbi5fY.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1YooWhnBBGVpia9gR37BNjtg81TXrDhxxNOUHFkpUGrwNIZcpDbFnwOA/0?wx_fmt=png&from=appmsg)
 
 ThreadLocal自身并不存储值，而是作为一个key来让线程从ThreadLocal中获取value。ThreadLocalMap中的key是弱引用，所以jvm在垃圾回收时如果外部没有强引用来引用它，ThreadLocal必然会被回收。但是，作为ThreadLocalMap中的key，ThreadLocal被回收后，ThreadLocalMap就会存在null，但value却不为null。如果当前线程一直不结束或者线程结束后不被你销毁，这会产生内存泄露（已分配空间的堆内存由于某种原因未释放或无法释放导致系统内存浪费或程序运行变慢甚至系统奔溃）。
 
