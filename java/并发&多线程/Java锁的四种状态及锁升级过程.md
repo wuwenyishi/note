@@ -58,13 +58,13 @@
 
 ## 锁对比
 
- ![L03Qu6](https://xuemingde.com/pages/image/others/L03Qu6.png)
+ ![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb11P0eKiao8oddlbPEYztoqzmokPVkhjGnPLbwKghbDeNibia3qFpoq18WA/0?wx_fmt=png&from=appmsg)
 
 
 
 # 锁升级过程  
 
-![EYimRi](https://xuemingde.com/pages/image/others/EYimRi.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb14MSFnQF2KaOpQOCcWXRcAfDZibE81ficfW32RNU6wvUEWqRUcPBBIGEA/0?wx_fmt=png&from=appmsg)
 
 
 

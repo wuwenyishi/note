@@ -2,12 +2,12 @@
 
 ### 线程池配置
 
-![image.png](https://xuemingde.com/pages/image/others/1617091122646-78d04495-37eb-42cf-a0a7-28974f23647b.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb15QGMe0n0ziaB7CbTFibG9YKibmfuYvDiaX8L39prfAPxnFg6ylp8BEBnTg/0?wx_fmt=png&from=appmsg)
 
 ### @Async
 
-![image.png](https://xuemingde.com/pages/image/others/1617091219237-0779b4d5-3184-49fb-a2de-e9c6dc0be764.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1Nh9ROEFsyaC4Zlc6qs9vaibmaHbTFCMfnPYqWu4XUqOWRJFumGsZAvw/0?wx_fmt=png&from=appmsg)
 
 ### 注意事项：
 
-![image.png](https://xuemingde.com/pages/image/others/1617090980456-5220d9d1-6b4e-4833-a138-f4be428fbcd2.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1jOHFicQardiaHBLIH21SXxA3ibHY8GCicj1rB2ROyOk01wIAOuMzsDbfIg/0?wx_fmt=png&from=appmsg)

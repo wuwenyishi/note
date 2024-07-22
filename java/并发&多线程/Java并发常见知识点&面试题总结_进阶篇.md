@@ -116,7 +116,7 @@ public class SynchronizedDemo {
 
 通过 JDK 自带的 `javap` 命令查看 `SynchronizedDemo` 类的相关字节码信息：首先切换到类的对应目录执行 `javac SynchronizedDemo.java` 命令生成编译后的 .class 文件，然后执行`javap -c -s -v -l SynchronizedDemo.class`。
 
-![bdjTtP](https://xuemingde.com/pages/image/others/bdjTtP.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1Via1DX48DYmGocWwQ4dTeibN7ojho7u0oicf1nGNougic69lF2ucTibdFng/0?wx_fmt=png&from=appmsg)
 
 从上面我们可以看出：**`synchronized` 同步语句块的实现使用的是 `monitorenter` 和 `monitorexit` 指令，其中 `monitorenter` 指令指向同步代码块的开始位置，`monitorexit` 指令则指明同步代码块的结束位置。**
 
@@ -128,13 +128,13 @@ public class SynchronizedDemo {
 
 在执行`monitorenter`时，会尝试获取对象的锁，如果锁的计数器为 0 则表示锁可以被获取，获取后将锁计数器设为 1 也就是加 1。
 
-![FifalX](https://xuemingde.com/pages/image/others/FifalX.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1GMFoWMcSliaDicHiagBk4Y8a86fjGjMMUviarr84bxk0AaGNCxb30Zcm6A/0?wx_fmt=png&from=appmsg)
 
 对象锁的的拥有者线程才可以执行 `monitorexit` 指令来释放锁。在执行 `monitorexit` 指令后，将锁计数器设为 0，表明锁被释放，其他线程可以尝试获取锁。
 
 
 
-![fYZTIr](https://xuemingde.com/pages/image/others/fYZTIr.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1X7RiascP9aibL8s4PUDTBib9pg7nzlkxwUHTRcZMXLOu9MrJc0awzacrQ/0?wx_fmt=png&from=appmsg)
 
 如果获取对象锁失败，那当前线程就要阻塞等待，直到锁被另外一个线程释放为止。
 
@@ -149,7 +149,7 @@ public class SynchronizedDemo2 {
 
 ```
 
-![in4o5i](https://xuemingde.com/pages/image/others/in4o5i.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1s5FJlCjKNtkAw72CGUdo8AdeP0eWaaGZ0WE5IEDs9FD70VyevPAS4A/0?wx_fmt=png&from=appmsg)
 
 `synchronized` 修饰的方法并没有 `monitorenter` 指令和 `monitorexit` 指令，取得代之的确实是 `ACC_SYNCHRONIZED` 标识，该标识指明了该方法是一个同步方法。JVM 通过该 `ACC_SYNCHRONIZED` 访问标志来辨别一个方法是否声明为同步方法，从而执行相应的同步调用。
 
@@ -213,7 +213,7 @@ JDK1.6 对锁的实现引入了大量的优化，如偏向锁、轻量级锁、�
 
 为了更好地理解，我画了一个简单的 CPU Cache 示意图如下（实际上，现代的 CPU Cache 通常分为三层，分别叫 L1,L2,L3 Cache）:
 
-![MaaTKn](https://xuemingde.com/pages/image/others/MaaTKn.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1BEVMRPuoW4qiaRyfpKXFytC1Md9nqbYCIshickjS0aBC7ADw83Ywh1UA/0?wx_fmt=png&from=appmsg)
 
 **CPU Cache 的工作方式：**
 
@@ -230,13 +230,13 @@ Java 内存模型抽象了线程和主内存之间的关系，就比如说线程
 > - **主内存** ：所有线程创建的实例对象都存放在主内存中，不管该实例对象是成员变量还是方法中的本地变量(也称局部变量)
 > - **本地内存** ：每个线程都有一个私有的本地内存来存储共享变量的副本，并且，每个线程只能访问自己的本地内存，无法访问其他线程的本地内存。本地内存是 JMM 抽象出来的一个概念，存储了主内存中的共享变量副本。
 
-![IDxmST](https://xuemingde.com/pages/image/others/IDxmST.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1KceYaSNAmz73clMLiafScOqFOYia6XgId63FXlmEZHA0bCk9e9judbbw/0?wx_fmt=png&from=appmsg)
 
 要解决这个问题，就需要把变量声明为 **`volatile`** ，这就指示 JVM，这个变量是共享且不稳定的，每次使用它都到主存中进行读取。
 
 所以，**`volatile` 关键字 除了防止 JVM 的指令重排 ，还有一个重要的作用就是保证变量的可见性。**
 
-![lnKsIF](https://xuemingde.com/pages/image/others/lnKsIF.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1uukruI0jzMTfEicpIKEeCJXAnsNDAO5T4bp3icgeyDIeMSoVCEJvjOeg/0?wx_fmt=png&from=appmsg)
 
 ### 2.3. 并发编程的三个重要特性
 
@@ -388,11 +388,11 @@ ThreadLocalMap(ThreadLocal<?> firstKey, Object firstValue) {
 
 比如我们在同一个线程中声明了两个 `ThreadLocal` 对象的话，会使用 `Thread`内部都是使用仅有那个`ThreadLocalMap` 存放数据的，`ThreadLocalMap`的 key 就是 `ThreadLocal`对象，value 就是 `ThreadLocal` 对象调用`set`方法设置的值。
 
-![Ri8u1H](https://xuemingde.com/pages/image/others/Ri8u1H.jpg)
+![](https://mmbiz.qlogo.cn/mmbiz_jpg/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1MagpXGAGXKW8VNo54kU5gUeRyqL6pv9fO7PeEJ3mrZJz2aIoXuNmYg/0?wx_fmt=jpeg&from=appmsg)
 
 `ThreadLocalMap`是`ThreadLocal`的静态内部类。
 
-![zEspZE](https://xuemingde.com/pages/image/others/zEspZE.jpg)
+![](https://mmbiz.qlogo.cn/mmbiz_jpg/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1VUhvQLY1NHmiaibRd2PiaFYFowjqtDJXic5oRpdtD8a0GuFJfOf1ibG37eg/0?wx_fmt=jpeg&from=appmsg)
 
 ### 3.4. ThreadLocal 内存泄露问题
 
@@ -505,7 +505,7 @@ public void execute(Runnable command) {
 
 **方式一：通过构造方法实现**
 
-![paxN3T](https://xuemingde.com/pages/image/others/paxN3T.jpg)
+![](https://mmbiz.qlogo.cn/mmbiz_jpg/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1xrBjTNzP95QNYa1t9wAmRjnGoWgiaM51za5Nz5QbSgibJUYLaibCjT6icg/0?wx_fmt=jpeg&from=appmsg)
 
 **方式二：通过 Executor 框架的工具类 Executors 来实现**
 
@@ -517,7 +517,7 @@ public void execute(Runnable command) {
 
 对应 Executors 工具类中的方法如图所示：
 
-![D2pTvO](https://xuemingde.com/pages/image/others/D2pTvO.jpg)
+![](https://mmbiz.qlogo.cn/mmbiz_jpg/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb12SWsjU44raK1Brciap1KSuNhcFjlsYXOeibibrOH1dVL5Hsad9hX8mhiaw/0?wx_fmt=jpeg&from=appmsg)
 
 ### 4.5 ThreadPoolExecutor 类分析
 
@@ -756,7 +756,7 @@ public void execute(Runnable command) {
 
 通过下图可以更好的对上面这 3 步做一个展示，下图是我为了省事直接从网上找到，原地址不明。
 
-![namkx5](https://xuemingde.com/pages/image/others/namkx5.jpg)
+![](https://mmbiz.qlogo.cn/mmbiz_jpg/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1dxR5taG9vrpOiaweUqhIOPyvNDQk9PPZbEKVgicAIcJicSeoibd3jJZePw/0?wx_fmt=jpeg&from=appmsg)
 
 现在，让我们在回到 4.6 节我们写的 Demo， 现在是不是很容易就可以搞懂它的原理了呢？
 
@@ -774,7 +774,7 @@ public void execute(Runnable command) {
 
 并发包 `java.util.concurrent` 的原子类都存放在`java.util.concurrent.atomic`下,如下图所示。
 
-![ViBcdS](https://xuemingde.com/pages/image/others/ViBcdS.jpg)
+![](https://mmbiz.qlogo.cn/mmbiz_jpg/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb107Rf9JiaZeSy8c8eTTV7nGCsV5OWoP3IibgvNzhLRfcE1Yo01jF4l00g/0?wx_fmt=jpeg&from=appmsg)
 
 ### 5.2. JUC 包中的原子类是哪 4 类?
 
@@ -872,7 +872,7 @@ CAS 的原理是拿期望的值和原本的一个值作比较，如果相同则�
 
 AQS 的全称为（`AbstractQueuedSynchronizer`），这个类在` java.util.concurrent.locks `包下面。
 
-![7yDVXQ](https://xuemingde.com/pages/image/others/7yDVXQ.jpg)
+![](https://mmbiz.qlogo.cn/mmbiz_jpg/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1tfqrV5hxn3dlup6vYW4euzecuh60IicL0J756rvgIqiaaFlKbTDyfibKw/0?wx_fmt=jpeg&from=appmsg)
 
 AQS 是一个用来构建锁和同步器的框架，使用 AQS 能简单且高效地构造出大量应用广泛的同步器，比如我们提到的 `ReentrantLock`，`Semaphore`，其他的诸如 `ReentrantReadWriteLock`，`SynchronousQueue`，`FutureTask` 等等皆是基于 AQS 的。当然，我们自己也能利用 AQS 非常轻松容易地构造出符合我们自己需求的同步器。
 
@@ -892,7 +892,7 @@ AQS 原理这部分参考了部分博客，在 6.2 节末尾放了链接。
 
 看个 AQS(AbstractQueuedSynchronizer)原理图：
 
-![oZcrm2](https://xuemingde.com/pages/image/others/oZcrm2.jpg)
+![](https://mmbiz.qlogo.cn/mmbiz_jpg/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1xLAja6FPCGBmN8sJ51ZAKibRQQwOnTBMU1EiapJVQ93SiaSEYVDRdUL7Q/0?wx_fmt=jpeg&from=appmsg)
 
 AQS 使用一个 int 成员变量来表示同步状态，通过内置的 FIFO 队列来完成获取资源线程的排队工作。AQS 使用 CAS 对该同步状态进行原子操作实现对其值的修改。
 

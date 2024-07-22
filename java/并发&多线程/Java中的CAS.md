@@ -4,7 +4,7 @@ CAS compare and swap （比较和交换）
 
 # CAS的执行过程  
 
-​    ![](https://xuemingde.com/pages/image/others/Foqp87.png)
+​    ![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1ORHhcdtnCRSQj9HUEKuh7j2SicD6szc4JKq2YibVeKeGdib8c9hibLwibibg/0?wx_fmt=png&from=appmsg)
 
 
 
@@ -39,7 +39,7 @@ public boolean compareAndSet(V   expectedReference,
     }
 ```
 
-![bkYcDR](https://xuemingde.com/pages/image/others/bkYcDR.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1AMVTvuJXbFCAYvpTgJHoSvE4LicqMMh4ogNfw0KlnuS4aaDGzWALDEA/0?wx_fmt=png&from=appmsg)
 
 > [参考文章](https://elsef.com/2020/03/08/%E5%A6%82%E4%BD%95%E7%90%86%E8%A7%A3ABA%E9%97%AE%E9%A2%98/)
 
@@ -51,7 +51,7 @@ public boolean compareAndSet(V   expectedReference,
 
 cmpxchg 是非原子性的，但lock这个指令锁住了值，不允许其他cpu修改
 
- ![VV5fET](https://xuemingde.com/pages/image/others/VV5fET.png)
+ ![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1iarOl5zsBlcrWZs7y7icp06LaImu0QVOjaiaDHAuUANvdr7ABL2XYPO8A/0?wx_fmt=png&from=appmsg)
 
 
 

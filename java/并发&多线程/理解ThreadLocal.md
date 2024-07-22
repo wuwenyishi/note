@@ -5,7 +5,7 @@
 
 官方解释：
 
-![image.png](https://xuemingde.com/pages/image/others/1616815633283-c9b7df4f-4278-4d34-b855-337a20803e62.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb152jBhzzAMSn7gJiaU8wNL1dO5el4ibMq5dkia9OEEEIoic7dia4DJdLt7Ww/0?wx_fmt=png&from=appmsg)
 
 
 
@@ -17,17 +17,17 @@
 
 #### 原理浅析
 
-![image.png](https://xuemingde.com/pages/image/others/1616815997129-aad7490b-f671-40d6-8879-bca2658e5aef.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1wTpIOc8x46YYEmzjwnKwUVk6TPZvCcTLRWqlHJH09Zyic5ljZKEX21A/0?wx_fmt=png&from=appmsg)
 
-![image.png](https://xuemingde.com/pages/image/others/1616826908408-53d45106-cf00-4626-9c81-4e8ad36b281b.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1ibMb3RULdrsSlQMsc2SMdQicPmjIg4Pg58UPRUEhX8GDLudKVEmXvKdA/0?wx_fmt=png&from=appmsg)
 
-![image.png](https://xuemingde.com/pages/image/others/1616826928515-5ade4c61-6adf-4537-95dd-064749ec857b.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1Ng1jEt8LqibXchtGiccoMGmMs2r09mWTJTQtcIpslWQqlSc1Vj9sd5Rw/0?wx_fmt=png&from=appmsg)
 
 #### ThreadLocalMap 
 
-![image.png](https://xuemingde.com/pages/image/others/1616826982637-30659013-3102-4326-b0d8-070f401cedf3.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb104dMGjic1mKnx4yJmABR71xbMyLLvEicDGWklYWoXn0dibS9sLUXMQd8Q/0?wx_fmt=png&from=appmsg)
 
-![image.png](https://xuemingde.com/pages/image/others/1616827030318-d21e91df-a93e-4776-95de-44ce3a9063db.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1DZndFlkvzoBMAcotOhtkfK5vZm769SoIcibylO2icNdoib2nAkAttl8GQ/0?wx_fmt=png&from=appmsg)
 
 ```java
 private void set(ThreadLocal<?> key, Object value) {
