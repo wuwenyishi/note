@@ -174,6 +174,20 @@ df -h
 
 
 
+### 查看磁盘负载状况 
+
+> 推荐命令【top】【iostat】
+
+![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLsZSibL8icxYc3v9nWL4Rw24pZ9cFy3icqe7HDibUpJooOp0UTDcXHN0jYN84Q1zfqkvRKvqnQX7cazfw/0?wx_fmt=png&from=appmsg)
+
+
+
+### 分区扩容
+
+
+
+
+
 ## 磁盘挂载
 
 ### 显示磁盘空间使用情况
@@ -183,6 +197,8 @@ df -h
 ```
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLsZSibL8icxYc3v9nWL4Rw24pzPZuxgp4xAGiaNLc4d56iat1PFGxVxK2NqtgQoic7o74jCGAyhWXZTwIw/0?wx_fmt=png&from=appmsg)
+
+
 
 ### 挂载
 
@@ -228,4 +244,37 @@ df -h
 还有一种自动挂载的说法
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLsZSibL8icxYc3v9nWL4Rw24pCicYqQ9nIgKpWj2r3vsbRU6nxZbfhK6cPtcODpXEY43plQpdnnYhW7A/0?wx_fmt=png&from=appmsg)
+
+
+
+分享一个自动化分区的脚本：【注意：需要根据线上环境微调部分参数】
+
+```bash
+#!/bin/bash
+
+df -h|grep '/hadoop' && exit 1
+
+yum install parted kmod-xfs xfsprogs -y
+disk_num=`fdisk -l | grep 8001 | awk '{print $2}'| awk -F ':' '{print $1}'`
+NUM=0
+for i in $disk_num
+do
+        parted  -s $i mklabel gpt
+        parted  -s $i mkpart primary 1 100%
+        mkfs.xfs -f ${i}1
+ 
+        if [ $NUM -eq 0 ];then
+                TMP=""
+        else
+                TMP=$NUM
+        fi
+ 
+        mkdir /hadoop${TMP}
+        mount -o noatime,nodiratime ${i}1 /hadoop${TMP}
+        uuid=`blkid ${i}1 |awk '{print $2}' |sed s#\"##g`
+        echo "$uuid     /hadoop${TMP}   xfs     noatime,nodiratime 0       0">>/etc/fstab
+        ((NUM++))
+done
+
+```
 
