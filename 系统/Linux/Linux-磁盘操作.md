@@ -1,10 +1,10 @@
 ## 文件系统类型
 
-**内核中的模块：**ext4, xfs, vfat
+**内核中的模块：** ext4, xfs, vfat
 
-**Linux的虚拟文件系统：**VFS
+**Linux的虚拟文件系统：** VFS
 
-**用户空间的管理工具：**mkfs.ext4，mkfs.xfs，mkfs.vfat
+**用户空间的管理工具：** mkfs.ext4，mkfs.xfs，mkfs.vfat
 
 * XFS（文件系统）
 
@@ -57,51 +57,19 @@ GPT磁盘是指使用GUID分区表的磁盘，GUID磁盘分区表（GUID Partiti
 
 
 
-### 查看所有磁盘和分区使用情况
 
-```shell
-lsblk
-```
+### 分区工具
 
-![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLttp1sg8zRMhfbZ9ichGZy0g0NWxO3vbxUTohy5fpzpqDs8WJccCL0nQ2RpQxiasykca7P49mTlG0vA/0?wx_fmt=png&from=appmsg)
+fdisk是Linux下常用的磁盘分区工具。受mbr分区表的限制，fdisk工具只能给小于2TB的磁盘划分分区。如果使用fdisk对大于2TB的磁盘进行分区，虽然可以分区，但其仅识别2TB的空间，所以磁盘容量若超过2TB，就要使用`parted分区工具`（后面会讲）进行分区。
 
-NAME：设备的名称。这是设备的唯一标识符，通常以 /dev/ 开头，例如 /dev/sda、/dev/sdb1。
+#### fdisk
 
-MAJ:MIN：主设备号和次设备号，用于唯一标识设备。主设备号表示设备类型，次设备号用于区分同一类型的不同设备。例如，主设备号为 11 表示块设备，次设备号为 0 表示第一个 SCSI 设备，因此 11:0 表示 /dev/sda。
-
-RM：可移动设备标志。0 表示非可移动设备，1 表示可移动设备。可移动设备是指可以插拔的设备，例如 USB 闪存驱动器。这个标志表示设备是否可以被安全地移除。
-
-SIZE：设备的大小。通常以字节、千字节、兆字节或其他容量单位表示。例如，100G 表示 100GB。
-
-RO：只读标志。0 表示设备可读写，1 表示设备只读。如果设备是只读的，则不能对其进行写操作，只能读取其中的数据。
-
-TYPE：设备类型。表示设备的类型，常见的类型包括磁盘（disk）、分区（part）、光盘驱动器（rom）、循环设备（loop）等。
-
-MOUNTPOINT：挂载点。如果设备已经挂载，则显示设备被挂载到的目录路径。如果设备没有被挂载，则显示为空。例如，/mnt/mydisk 表示设备被挂载到 /mnt/mydisk 目录下。
+- -l 列出素所有分区表
+- -u 与 -l 搭配使用，显示分区数目
 
 
 
-### 查看当前硬盘的分区情况
-
-```shell
-fdisk -l
-```
-
-![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLttp1sg8zRMhfbZ9ichGZy0gvT6bJ0OjWHmPhQEYMqSwRxYnA5lUmWOIfdU4GkPLFHuicJV6WegdTBw/0?wx_fmt=png&from=appmsg)
-
-
-
-### 显示磁盘空间使用情况
-
-```shell
-df -h
-```
-
-![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLsZSibL8icxYc3v9nWL4Rw24pzPZuxgp4xAGiaNLc4d56iat1PFGxVxK2NqtgQoic7o74jCGAyhWXZTwIw/0?wx_fmt=png&from=appmsg)
-
-
-
-### 进入fdisk交互式界面
+进入fdisk交互式界面
 
 ```shell
 fdisk /dev/sda
@@ -110,6 +78,16 @@ fdisk /dev/sda
 查看分区信息，输入 p
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLttp1sg8zRMhfbZ9ichGZy0gDFkWUPBCfqGvSljRdRGia4icUmAkAn36Jr0UDWv9HhpeX09yeR2fr1Tw/0?wx_fmt=png&from=appmsg)
+
+
+
+查看当前硬盘的分区情况
+
+```shell
+fdisk -l
+```
+
+![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLttp1sg8zRMhfbZ9ichGZy0gvT6bJ0OjWHmPhQEYMqSwRxYnA5lUmWOIfdU4GkPLFHuicJV6WegdTBw/0?wx_fmt=png&from=appmsg)
 
 
 
@@ -146,6 +124,43 @@ v 验证分区表
 w 将表写入磁盘并退出
 
 x 额外功能(仅限专家使用)
+
+
+
+
+### 查看所有磁盘和分区使用情况
+
+```shell
+lsblk
+```
+
+![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLttp1sg8zRMhfbZ9ichGZy0g0NWxO3vbxUTohy5fpzpqDs8WJccCL0nQ2RpQxiasykca7P49mTlG0vA/0?wx_fmt=png&from=appmsg)
+
+NAME：设备的名称。这是设备的唯一标识符，通常以 /dev/ 开头，例如 /dev/sda、/dev/sdb1。
+
+MAJ:MIN：主设备号和次设备号，用于唯一标识设备。主设备号表示设备类型，次设备号用于区分同一类型的不同设备。例如，主设备号为 11 表示块设备，次设备号为 0 表示第一个 SCSI 设备，因此 11:0 表示 /dev/sda。
+
+RM：可移动设备标志。0 表示非可移动设备，1 表示可移动设备。可移动设备是指可以插拔的设备，例如 USB 闪存驱动器。这个标志表示设备是否可以被安全地移除。
+
+SIZE：设备的大小。通常以字节、千字节、兆字节或其他容量单位表示。例如，100G 表示 100GB。
+
+RO：只读标志。0 表示设备可读写，1 表示设备只读。如果设备是只读的，则不能对其进行写操作，只能读取其中的数据。
+
+TYPE：设备类型。表示设备的类型，常见的类型包括磁盘（disk）、分区（part）、光盘驱动器（rom）、循环设备（loop）等。
+
+MOUNTPOINT：挂载点。如果设备已经挂载，则显示设备被挂载到的目录路径。如果设备没有被挂载，则显示为空。例如，/mnt/mydisk 表示设备被挂载到 /mnt/mydisk 目录下。
+
+
+
+
+
+### 显示磁盘空间使用情况
+
+```shell
+df -h
+```
+
+![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLsZSibL8icxYc3v9nWL4Rw24pzPZuxgp4xAGiaNLc4d56iat1PFGxVxK2NqtgQoic7o74jCGAyhWXZTwIw/0?wx_fmt=png&from=appmsg)
 
 
 
@@ -210,5 +225,7 @@ df -h
 
 添加完成后，执行mount -a 即可生效
 
+还有一种自动挂载的说法
 
+![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLsZSibL8icxYc3v9nWL4Rw24pCicYqQ9nIgKpWj2r3vsbRU6nxZbfhK6cPtcODpXEY43plQpdnnYhW7A/0?wx_fmt=png&from=appmsg)
 
