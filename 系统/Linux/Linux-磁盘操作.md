@@ -65,9 +65,19 @@ lsblk
 
 ![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLttp1sg8zRMhfbZ9ichGZy0g0NWxO3vbxUTohy5fpzpqDs8WJccCL0nQ2RpQxiasykca7P49mTlG0vA/0?wx_fmt=png&from=appmsg)
 
-sda: 磁盘
+NAME：设备的名称。这是设备的唯一标识符，通常以 /dev/ 开头，例如 /dev/sda、/dev/sdb1。
 
-sda1、sda1、sda1 为三个分区
+MAJ:MIN：主设备号和次设备号，用于唯一标识设备。主设备号表示设备类型，次设备号用于区分同一类型的不同设备。例如，主设备号为 11 表示块设备，次设备号为 0 表示第一个 SCSI 设备，因此 11:0 表示 /dev/sda。
+
+RM：可移动设备标志。0 表示非可移动设备，1 表示可移动设备。可移动设备是指可以插拔的设备，例如 USB 闪存驱动器。这个标志表示设备是否可以被安全地移除。
+
+SIZE：设备的大小。通常以字节、千字节、兆字节或其他容量单位表示。例如，100G 表示 100GB。
+
+RO：只读标志。0 表示设备可读写，1 表示设备只读。如果设备是只读的，则不能对其进行写操作，只能读取其中的数据。
+
+TYPE：设备类型。表示设备的类型，常见的类型包括磁盘（disk）、分区（part）、光盘驱动器（rom）、循环设备（loop）等。
+
+MOUNTPOINT：挂载点。如果设备已经挂载，则显示设备被挂载到的目录路径。如果设备没有被挂载，则显示为空。例如，/mnt/mydisk 表示设备被挂载到 /mnt/mydisk 目录下。
 
 
 
@@ -138,4 +148,12 @@ w 将表写入磁盘并退出
 x 额外功能(仅限专家使用)
 
 
+
+### 格式化磁盘
+
+* 格式化为ext4文件系统：mkfs.ext4 /dev/sdx
+* 格式化为ext3文件系统：mkfs.ext3 /dev/sdx
+* 格式化为NTFS文件系统：mkfs.ntfs /dev/sdx
+
+   其中，/dev/sdx是待格式化的磁盘设备名，如/dev/sda、/dev/sdb等。
 
