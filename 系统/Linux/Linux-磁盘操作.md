@@ -157,3 +157,58 @@ x 额外功能(仅限专家使用)
 
    其中，/dev/sdx是待格式化的磁盘设备名，如/dev/sda、/dev/sdb等。
 
+
+
+## 磁盘挂载
+
+### 显示磁盘空间使用情况
+
+```shell
+df -h
+```
+
+![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLsZSibL8icxYc3v9nWL4Rw24pzPZuxgp4xAGiaNLc4d56iat1PFGxVxK2NqtgQoic7o74jCGAyhWXZTwIw/0?wx_fmt=png&from=appmsg)
+
+### 挂载
+
+手动挂载
+
+> 将设备 /dev/vdb1 挂载到 /data目录
+
+* 创建挂载点
+
+  ```shell
+  mkdir /data
+  ```
+
+* 挂载
+
+  ```shell
+  mount /dev/vdb1 /data
+  ```
+
+* 查看挂载情况
+
+  ```shell
+  df -h
+  ```
+
+自动挂载
+
+> 通过修改/etc/fstab实现自动挂载
+
+修改/etc/fstab文件
+
+文件的末尾添加一行，按照以下格式指定挂载点：
+
+```
+/dev/vdb1 /data                                 ext4    defaults        0 0
+```
+
+* /dev/vdb1 磁盘
+* /data 挂载点
+
+添加完成后，执行mount -a 即可生效
+
+
+
