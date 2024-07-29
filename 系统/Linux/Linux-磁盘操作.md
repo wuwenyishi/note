@@ -1,3 +1,15 @@
+## 文件系统类型
+
+**内核中的模块：**ext4, xfs, vfat
+
+**Linux的虚拟文件系统：**VFS
+
+**用户空间的管理工具：**mkfs.ext4，mkfs.xfs，mkfs.vfat
+
+
+
+
+
 ## 磁盘分区
 
 ### 分区类型
@@ -52,7 +64,7 @@ fdisk -l
 df -h
 ```
 
-![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLttp1sg8zRMhfbZ9ichGZy0gf9lGpWj9uvkLhOicYHUiav6nykNeOBwK2LvericxMibZVQQ17QwoLTXGIw/0?wx_fmt=png&from=appmsg)
+![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLsZSibL8icxYc3v9nWL4Rw24pzPZuxgp4xAGiaNLc4d56iat1PFGxVxK2NqtgQoic7o74jCGAyhWXZTwIw/0?wx_fmt=png&from=appmsg)
 
 
 
