@@ -29,7 +29,7 @@
 
   最大1EB的文件系统以及速度的提升
 
-  ​
+
 
 
 
@@ -167,10 +167,30 @@ df -h
 ### 格式化磁盘
 
 * 格式化为ext4文件系统：mkfs.ext4 /dev/sdx
+
 * 格式化为ext3文件系统：mkfs.ext3 /dev/sdx
+
 * 格式化为NTFS文件系统：mkfs.ntfs /dev/sdx
 
    其中，/dev/sdx是待格式化的磁盘设备名，如/dev/sda、/dev/sdb等。
+
+
+
+
+mkfs命令
+
+用于创建文件系统，格式化指定的磁盘分区，例如创建Ext2、Ext3、Ext4、XFS等文件系统
+
+**mkfs命令** 用于在设备上（通常为硬盘）创建Linux文件系统。mkfs本身并不执行建立文件系统的工作，而是去调用相关的程序来执行。
+
+命令全称：make file system
+
+![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLtcmXXc0ATslUau7ic6FictJ5qwDx0neUp0ogMRSbOQ8N01gscHL9u186UvmYM8lFictbEKM4Cia3rJfg/0?wx_fmt=png&from=appmsg)
+
+![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLtcmXXc0ATslUau7ic6FictJ5icDPkukr7VmzRJTtKwPicsWGH4DbaIVw1PNqiceq8Gu9f7Hor84aWFm2g/0?wx_fmt=png&from=appmsg)
+
+
+
 
 
 
@@ -277,4 +297,30 @@ do
 done
 
 ```
+
+
+
+## 查看
+
+du 命令也是查看使用空间的，但是与 df 命令不同的是 Linux du 命令是对文件和目录磁盘使用的空间的查看，还是和df命令有一些区别的
+
+![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLtcmXXc0ATslUau7ic6FictJ5CXnZpeVhCWV3B4ic6jRSZdFztP44h1lEfqEuFEqggOox7w3XEwScZ9w/0?wx_fmt=png&from=appmsg)
+
+
+
+* 只列出当前目录下的所有文件夹容量
+
+  > 包括隐藏文件夹
+
+  du
+
+  ![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLtcmXXc0ATslUau7ic6FictJ5gTgo3NytL2ZvSUaeQOxtuPYbnpzic4JJcdaqpkUboFndtutk3BqMNTQ/0?wx_fmt=png&from=appmsg)
+
+  ​
+
+
+
+
+
+
 
