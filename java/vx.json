@@ -1,0 +1,57 @@
+{
+    "created_time": "2024-12-26T01:24:01Z",
+    "files": [
+        {
+            "attachment_folder": "",
+            "created_time": "2024-12-26T01:24:01Z",
+            "id": "32",
+            "modified_time": "2024-12-26T01:24:01Z",
+            "name": "20240321-Java开发随笔.md",
+            "signature": "129472422233288753",
+            "tags": [
+            ]
+        }
+    ],
+    "folders": [
+        {
+            "name": "BUG"
+        },
+        {
+            "name": "JVM"
+        },
+        {
+            "name": "MyBatis"
+        },
+        {
+            "name": "Spring"
+        },
+        {
+            "name": "SpringBoot"
+        },
+        {
+            "name": "分布式"
+        },
+        {
+            "name": "基础"
+        },
+        {
+            "name": "安全框架"
+        },
+        {
+            "name": "并发&多线程"
+        },
+        {
+            "name": "开发设计"
+        },
+        {
+            "name": "搜索"
+        },
+        {
+            "name": "消息队列"
+        }
+    ],
+    "id": "142",
+    "modified_time": "2024-12-26T01:24:01Z",
+    "signature": "9476439753712513073",
+    "version": 3
+}
