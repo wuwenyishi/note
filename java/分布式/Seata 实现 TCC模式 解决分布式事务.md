@@ -2,7 +2,7 @@
 
 今天这篇文章介绍一下**Seata**如何实现**TCC**事务模式，文章目录如下：
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0915-EURuCQ.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0915-EURuCQ.png)
 
 
 
@@ -19,7 +19,7 @@ TCC分为两个阶段，分别如下：
 - 1. **Confirm**（确认）：执行真正的业务（执行业务，释放锁）
   2. **Cancle**（取消）：是预留资源的取消（出问题，释放锁）
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0916-zBPU2C.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0916-zBPU2C.png)
 
 
 
@@ -39,7 +39,7 @@ TCC 机制中的 Try 仅是一个初步操作，它和后续的确认一起才�
 
 
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0916-avifY6.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0916-avifY6.png)
 
 
 
@@ -51,7 +51,7 @@ Confirm 和 Cancel 操作满足幂等性，如果 Confirm 或 Cancel 操作执�
 
 Confirm：当 Try 阶段服务全部正常执行， 执行确认业务逻辑操作，业务如下图：
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0917-JNgWvp.png)Try->Confirm
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0917-JNgWvp.png)Try->Confirm
 
 这里使用的资源一定是 Try 阶段预留的业务资源。在 TCC 事务机制中认为，如果在 Try 阶段能正常的预留资源，那 Confirm 一定能完整正确的提交。
 
@@ -59,7 +59,7 @@ Confirm 阶段也可以看成是对 Try 阶段的一个补充，Try+Confirm 一�
 
 Cancel：当 Try 阶段存在服务执行失败， 进入 Cancel 阶段，业务如下图：
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0917-oWUAom.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0917-oWUAom.png)
 
 
 
@@ -79,7 +79,7 @@ Cancel 取消执行，释放 Try 阶段预留的业务资源，上面的例子�
 
 通用型TCC解决方案是最经典的TCC事务模型的实现，正如第一节介绍的模型，所有的从业务都参与到主业务的决策中。
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0917-B2G1cU.png)通用型TCC
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0917-B2G1cU.png)通用型TCC
 
 
 
@@ -89,7 +89,7 @@ Cancel 取消执行，释放 Try 阶段预留的业务资源，上面的例子�
 
 这个三个服务要么同时成功，要么同时失败。
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0918-QX5SLr.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0918-QX5SLr.png)
 
 
 
@@ -99,7 +99,7 @@ Cancel 取消执行，释放 Try 阶段预留的业务资源，上面的例子�
 
 异步确保型 TCC 解决方案的直接从业务服务是可靠消息服务，而真正的从业务服务则通过消息服务解耦，作为消息服务的消费端，异步地执行。
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0918-zFDeH7.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0918-zFDeH7.png)
 
 
 
@@ -115,13 +115,13 @@ Cancel 取消执行，释放 Try 阶段预留的业务资源，上面的例子�
 
 由于从业务服务消费消息是一个异步的过程，执行时间不确定，可能会导致不一致时间窗口增加。因此，异步确保性 TCC  分布式事务解决方案只适用于对最终一致性时间敏感度较低的一些被动型业务（从业务服务的处理结果不影响主业务服务的决策，只被动的接收主业务服务的决策结果）。比如会员注册服务和邮件发送服务：
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0918-5NmlWj.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0918-5NmlWj.png)
 
 ### 3、补偿型 TCC 解决方案
 
 补偿型 TCC 解决方案与通用型 TCC 解决方案的结构相似，其从业务服务也需要参与到主业务服务的活动决策当中。但不一样的是，前者的从业务服务只需要提供 Do 和 Compensate 两个接口，而后者需要提供三个接口。
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0918-rCOxMX.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0918-rCOxMX.png)
 
 Do 接口直接执行真正的完整业务逻辑，完成业务处理，业务执行结果外部可见；Compensate 操作用于业务补偿，抵消或部分抵消正向业务操作的业务结果，Compensate操作需满足幂等性。
 
@@ -299,7 +299,7 @@ TCC模式定义中提到：如果confirm或者cancel方法执行失败，要一�
 
 源码目录如下：
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0920-sUVDAb.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0920-sUVDAb.png)
 
 
 
@@ -307,7 +307,7 @@ TCC模式定义中提到：如果confirm或者cancel方法执行失败，要一�
 
 项目启动所需要的相关文件如下图：
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0920-5Me486.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0920-5Me486.png)
 
 
 
@@ -321,7 +321,7 @@ TCC模式定义中提到：如果confirm或者cancel方法执行失败，要一�
 
 在**order-boot**模块创建OrderTccService，代码如下：
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0924-cX2XaO.jpeg)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0924-cX2XaO.jpeg)
 
 
 
@@ -345,7 +345,7 @@ TCC模式定义中提到：如果confirm或者cancel方法执行失败，要一�
 
 **1、try方法**
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0924-DKJbuw.jpeg)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0924-DKJbuw.jpeg)
 
 
 
@@ -363,7 +363,7 @@ try方法
 
 **2、confirm方法**
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0920-RMjkq9.jpeg)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0920-RMjkq9.jpeg)
 
 
 
@@ -383,7 +383,7 @@ confirm方法
 
 **3、cancel方法**
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0924-quxaJS.jpeg)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0924-quxaJS.jpeg)
 
 
 
@@ -411,7 +411,7 @@ cancel方法
 
 代码如下：
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0921-770Bne.jpeg)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0921-770Bne.jpeg)
 
 
 
@@ -447,7 +447,7 @@ CREATE TABLE `transactional_record` (
 
 上面只是完成了TCC的三个方法，主业务事务发起方还未提供，代码如下：
 
-![图片](https://xuemingde.com/pages/image/2022/04/26/0920-RjvIDx.jpeg)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/26/0920-RjvIDx.jpeg)
 
 
 

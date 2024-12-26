@@ -137,7 +137,7 @@ redis内部整体的存储结构是一个大的hashmap，内部是数组实现�
 
 结构图如下：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/201938.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/201938.png)
 
 dictEntry是存储key->value的地方，再让我们看一下dictEntry结构体
 
@@ -200,7 +200,7 @@ redis对象底层的八种数据结构
 
 好了，通过redisObject就可以具体指向redis数据类型了，总结一下每种数据类型都使用了哪些数据结构，如下图所示
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202007.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202007.png)
 
 前期准备知识已准备完毕，下面分每种基本类型来讲。
 
@@ -333,7 +333,7 @@ ziplist是一种压缩链表，它的好处是更能节省内存空间，因为�
 
 ziplist结构如下：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202035.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202035.png)
 
 1、zlbytes:用于记录整个压缩列表占用的内存字节数
 　
@@ -404,7 +404,7 @@ typedef struct quicklistLZF {
 
 结构图如下：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202050.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202050.png)
 
 ziplist的长度
 
@@ -466,7 +466,7 @@ typedef struct dictEntry {
 
 结构图如下：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202117.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202117.png)
 
 虽然dict结构有两个hashtable，但是通常情况下只有一个hashtable是有值的。但是在dict扩容缩容的时候，需要分配新的hashtable，然后进行渐近式搬迁，这时候两个hashtable存储的旧的hashtable和新的hashtable。搬迁结束后，旧hashtable删除，新的取而代之。
 
@@ -504,7 +504,7 @@ rehash步骤
 
 过程如下图：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202127.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202127.png)
 
 #### 6 set数据结构
 
@@ -558,7 +558,7 @@ Zset也使用了ziplist做了排序，所以下面讲一下ziplist如何做排�
 
 存储结构图如下一目了然：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202141.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202141.png)
 
 **skiplist跳表**
 
@@ -601,13 +601,13 @@ typedef struct zskiplistNode {
 
 我们先看下链表
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202238.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202238.png)
 
 如果想查找到node5需要从node1查到node5，查询耗时
 
 但如果在node上加上索引：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202244.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202244.png)
 
 这样通过索引就能直接从node1查找到node5
 
@@ -615,7 +615,7 @@ typedef struct zskiplistNode {
 
 让我们再看下redis的跳表结构（图太复杂，直接从网上找了张图说明）
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202247.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202247.png)
 
 - header:指向跳跃表的表头节点，通过这个指针程序定位表头节点的时间复杂度就为O(1)；
 - tail:指向跳跃表的表尾节点,通过这个指针程序定位表尾节点的时间复杂度就为O(1)；
@@ -737,7 +737,7 @@ watch保证事务只能在所有被监视键都没有被修改的前提下执行
 
 watch执行流程
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202323.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202323.png)
 
 ### 七 Redis持久化
 
@@ -777,7 +777,7 @@ bgsave是异步进行，进行持久化的时候，redis还可以将继续响应
 
 bgsave和save对比
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202337.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202337.png)
 
 自动触发
 
@@ -882,7 +882,7 @@ auto-aof-rewrite-min-size 64mb意为当文件至少要达到64mb才会触发制�
 
 #### 3 rdb与aof对比
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202401.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202401.png)
 
 ### 八 发布与订阅
 
@@ -894,11 +894,11 @@ redis通过PUBLISH和SUBSCRIBE等命令实现了订阅与发布模式，这个�
 
 **订阅**
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202406.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202406.png)
 
 **发布**
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202415.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202415.png)
 
 **完整流程**
 
@@ -943,7 +943,7 @@ struct redisServer {
 
 其中，字典的键为正在被订阅的频道， 而字典的值则是一个链表， 链表中保存了所有订阅这个频道的客户端。
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202437.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202437.png)
 
 订阅
 
@@ -951,7 +951,7 @@ struct redisServer {
 
 当client 10执行subscribe channel1 channel2 channel3时，会将client 10分别加到 channel1 channel2 channel3关联的链表尾部。
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202442.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202442.png)
 
 发布
 
@@ -969,7 +969,7 @@ pattern使用了通配符的方式来订阅
 
 所以当使用 publish命令发送信息到某个频道时， 不仅所有订阅该频道的客户端会收到信息， 如果有某个/某些模式和这个频道匹配的话， 那么所有订阅这个/这些频道的客户端也同样会收到信息。
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202452.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202452.png)
 
 订阅发布完整流程
 
@@ -1025,13 +1025,13 @@ typedef struct pubsubPattern {
 
 数据结构图如下：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202518.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202518.png)
 
 订阅
 
 当有信的订阅时，会将订阅的客户端和模式信息添加到链表后面。
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202525.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202525.png)
 
 发布
 
@@ -1076,7 +1076,7 @@ def PUBLISH(channel, message):
 
 主从库采用的是读写分离的方式
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202538.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202538.png)
 
 #### 1 原理
 
@@ -1110,7 +1110,7 @@ def PUBLISH(channel, message):
 
 下图是一个典型的哨兵集群监控的逻辑图
 
-![image.png](https://xuemingde.com/pages/image/2022/03/202605.png)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/202605.png)
 
 Redis Sentinel包含了若个Sentinel节点，这样做也带来了两个好处：
 

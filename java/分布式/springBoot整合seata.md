@@ -176,7 +176,7 @@ seata:
 
 文件在
 
-![image-20210312170639465](https://xuemingde.com/pages/image/others/image-20210312170639465.png)
+![image-20210312170639465](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/image-20210312170639465.png)
 
 修改config.txt
 
@@ -202,17 +202,17 @@ store.db.maxWait=5000
 
 进入文件夹下
 
-![image-20210312171029260](https://xuemingde.com/pages/image/others/image-20210312171029260.png)
+![image-20210312171029260](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/image-20210312171029260.png)
 
 右键
 
-![image-20210312171131042](https://xuemingde.com/pages/image/others/image-20210312171131042.png)
+![image-20210312171131042](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/image-20210312171131042.png)
 
-![image-20210312171216907](https://xuemingde.com/pages/image/others/image-20210312171216907.png)
+![image-20210312171216907](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/image-20210312171216907.png)
 
  进入nacos查看
 
-![image-20210312171537526](https://xuemingde.com/pages/image/others/image-20210312171537526.png)
+![image-20210312171537526](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/image-20210312171537526.png)
 
 
 
@@ -220,16 +220,16 @@ store.db.maxWait=5000
 
 更改server中的registry.conf
 
-![image-20210312171654248](https://xuemingde.com/pages/image/others/image-20210312171654248.png)
+![image-20210312171654248](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/image-20210312171654248.png)
 
-![image-20210312171805716](https://xuemingde.com/pages/image/others/image-20210312171805716.png)
+![image-20210312171805716](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/image-20210312171805716.png)
 
-![image-20210312171822584](https://xuemingde.com/pages/image/others/image-20210312171822584.png)
+![image-20210312171822584](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/image-20210312171822584.png)
 
 ### 第七步
 
 运行seata-server
 
-![image-20210312171941551](https://xuemingde.com/pages/image/others/image-20210312171941551.png)
+![image-20210312171941551](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/image-20210312171941551.png)
 
-![image-20210312172018047](https://xuemingde.com/pages/image/others/image-20210312172018047.png)
+![image-20210312172018047](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/image-20210312172018047.png)

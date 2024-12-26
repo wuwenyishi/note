@@ -9,7 +9,7 @@ Volatile有两大作用
 
 ## CPU的乱序执行  
 
-![](https://xuemingde.com/pages/image/others/S8d07j.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/S8d07j.png)
 
 CPU为什么支持乱序执行？是为了提高效率。
 
@@ -29,21 +29,21 @@ public static void main(String[] args) {
 }
 ```
 
-![](https://xuemingde.com/pages/image/others/hcd0hK.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/hcd0hK.png)
 
 new 出一个对象至少需要三步：
 
- ![](https://xuemingde.com/pages/image/others/xYGO2T.png)
+ ![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/xYGO2T.png)
 
-第一步：new ，申请一块内存空间，用来装我new出来的对象。如上图所示，申请的内存空间里肯定有一个成员变量m，这个m的值是他的默认值，根据数据类型来定，所以这个m的默认值是0； ![](https://xuemingde.com/pages/image/others/mY2ArO.png)
-
-
-
-第二步：给成员变量赋值，所以此时的m值变为了8。**这个过程就是对象的半初始化状态。** ![](https://xuemingde.com/pages/image/others/zdwTUK.png)
+第一步：new ，申请一块内存空间，用来装我new出来的对象。如上图所示，申请的内存空间里肯定有一个成员变量m，这个m的值是他的默认值，根据数据类型来定，所以这个m的默认值是0； ![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/mY2ArO.png)
 
 
 
-第三步：建立关联，局部变量 t ，t里面存储一个指针，这个指针就指向一个对象。 ![](https://xuemingde.com/pages/image/others/6rJ0tu.png)
+第二步：给成员变量赋值，所以此时的m值变为了8。**这个过程就是对象的半初始化状态。** ![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/zdwTUK.png)
+
+
+
+第三步：建立关联，局部变量 t ，t里面存储一个指针，这个指针就指向一个对象。 ![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/6rJ0tu.png)
 
 
 
@@ -92,7 +92,7 @@ public class TestDemo {
 
 为什么呢？
 
- ![](https://xuemingde.com/pages/image/others/UF3vK1.png)
+ ![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/UF3vK1.png)
 
 
 
@@ -114,7 +114,7 @@ Volatile的一个作用就是禁止指令重排序，用Volatile修饰的任何�
 
 JVM级别的内存屏障分为四种
 
- ![](https://xuemingde.com/pages/image/others/yGGBJz.png)
+ ![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/yGGBJz.png)
 
 
 
@@ -122,7 +122,7 @@ JVM是一种规范，这个规范要求被Volatile修饰的东西要实现内存
 
 
 
- ![](https://xuemingde.com/pages/image/others/vSRQKY.png)
+ ![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/vSRQKY.png)
 
 
 

@@ -26,7 +26,7 @@ WHERE
 	age > 1;
 ```
 
- ![pIBzxW](https://xuemingde.com/pages/image/others/pIBzxW.png)
+ ![pIBzxW](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/pIBzxW.png)
 
 ## ID为UUID时。
 可用 REPLACE 函数将字符串中的某个字符替换即可。

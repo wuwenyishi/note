@@ -235,4 +235,4 @@ public class MyHeaderFooter extends PdfPageEventHelper {
 ```
 
 **示例图：**  
-![DoAJOn](https://xuemingde.com/pages/image/others/DoAJOn.png)
+![DoAJOn](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/DoAJOn.png)

@@ -28,7 +28,7 @@
 
 所以变相的相当于在这个括号的40秒的时间内就通过了200个请求，超过了我们限流的阈值。
 
-![图片](https://xuemingde.com/pages/image/2022/04/15/1020-ePDnVA.jpeg)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/15/1020-ePDnVA.jpeg)
 
 
 
@@ -42,7 +42,7 @@
 
 然后时间窗口滑动，下一个20s请求又来了100个请求，此时我们滑动窗口的60s范围内请求数量肯定就超过100了啊，所以请求被拒绝。
 
-![图片](https://xuemingde.com/pages/image/2022/04/15/1020-CGNSUR.jpeg)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/15/1020-CGNSUR.jpeg)
 
 
 
@@ -84,7 +84,7 @@
 
 前期就是创建节点，然后slot串起来就是一个责任链模式，StatisticSlot通过滑动窗口来统计数据，FlowSlot是真正限流的逻辑，还有一些降级、系统保护的措施，最终形成了整个sentinel的限流方式。
 
-![图片](https://xuemingde.com/pages/image/2022/04/15/1022-Wi0ok6.jpeg)就看看官方图吧，这圆形画起来好恶心
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/15/1022-Wi0ok6.jpeg)就看看官方图吧，这圆形画起来好恶心
 
 滑动窗口的实现主要可以看`LeapArray`的代码，默认的话定义了时间窗口的相关参数。
 
@@ -453,7 +453,7 @@ private long coolDownTokens(long currentTime, long passQps) {
 
 5. 最后，如果QPS回复正常，那么又会逐渐回到警戒线之上，就回到了最开始的过程。
 
-![图片](https://xuemingde.com/pages/image/2022/04/15/1023-CBruaZ.jpeg)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/15/1023-CBruaZ.jpeg)
 
 
 

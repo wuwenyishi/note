@@ -250,7 +250,7 @@ protected TransactionAttribute computeTransactionAttribute(Method method, Class<
 
 所以，如果所有方法上的修饰符都是非public的时候，那么将不会创建代理对象。以一开始的测试代码为例，如果正常的修饰符的testService是下面图片中的，经过cglib创建的代理对象。
 
-![图片](https://xuemingde.com/pages/image/2022/04/17/1016-kIvrdM.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/17/1016-kIvrdM.png)
 
 如果class中的方法都是非public的那么将不是代理对象。
 

@@ -123,7 +123,7 @@ JDK 6 引入了自适应自旋锁，意味着自旋的次数不在固定，而�
 
 ### 队列协作流程图
 
-![](https://p3-juejin.byteimg.com/tos-cn-i-k3u1fbpfcp/d42e3a85b00d4ba88fbb04bfa64e9d4a~tplv-k3u1fbpfcp-zoom-1.image)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLtjzibSYqvuZfB4TaSYDTCb1meUg7nebaBTjjiaWzP3fKBYyKiaWtEwg6DicoLRP004VtRNvxJtBfC9ibQ/0?wx_fmt=png&from=appmsg)
 
 ## 源码分析
 

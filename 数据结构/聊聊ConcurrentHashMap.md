@@ -2,7 +2,7 @@
 
 本文汇总了常考的 ConcurrentHashMap 面试题，面试 ConcurrentHashMap，看这一篇就够了！为帮助大家高效复习，专门用”★ “表示面试中出现的频率，”★ “越多，代表越高频！
 
-![](https://xuemingde.com/pages/image/2022/06/02/10318bUq3E.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyMgUkJcgvZ5eSa1H3ECRudxuLgheENqIkl6EkfzXuv35JkUSOHU3qJg/0?wx_fmt=png&from=appmsg)
 
 
 
@@ -18,17 +18,17 @@ JDK1.7 中的 ConcurrentHashMap 是由 `Segment` 数组结构和 `HashEntry` 数
 
 如下图所示，首先将数据分为一段一段的存储，然后给每一段数据配一把锁，当一个线程占用锁访问其中一段数据时，其他段的数据也能被其他线程访问，实现了真正的并发访问。
 
-![](https://xuemingde.com/pages/image/2022/06/02/1032qwe0jW.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyubC5WsAWay7iaEwmomg9Tt18ULp8nykZJ9gfdgGIQRxN6VL6e2lqayg/0?wx_fmt=png&from=appmsg)
 
 Segment 是 ConcurrentHashMap 的一个内部类，主要的组成如下：
 
-![](https://xuemingde.com/pages/image/2022/06/02/1034TwAp6g.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyyoL4NlHm0160XlsOlN7GyXyDWuFsIxicTtqJGTicQ2Q3WZb8Wk1aickFQ/0?wx_fmt=png&from=appmsg)
 
 Segment 继承了 ReentrantLock，所以 Segment 是一种可重入锁，扮演锁的角色。Segment 默认为 16，也就是并发度为 16。
 
 存放元素的 HashEntry，也是一个静态内部类，主要的组成如下：
 
-![](https://xuemingde.com/pages/image/2022/06/02/1034mlVtdv.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwy8UibHibsiaHNoicIibGTT0GjLjG4D8icGhu6ou2LkAJI3kcibrj3Fia19fKgTw/0?wx_fmt=png&from=appmsg)
 
 其中，用 volatile 修饰了 HashEntry 的数据 value 和 下一个节点 next，保证了多线程环境下数据获取时的**可见性**！
 
@@ -38,7 +38,7 @@ Segment 继承了 ReentrantLock，所以 Segment 是一种可重入锁，扮演�
 
 将锁的级别控制在了更细粒度的哈希桶数组元素级别，也就是说只需要锁住这个链表头节点（红黑树的根节点），就不会影响其他的哈希桶数组元素的读写，大大提高了并发度。
 
-![](https://xuemingde.com/pages/image/2022/06/02/1035IaVcP4.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwy6uMMfaev5I4XHU8qgB4icOicic7KdmN2RMaGy42zba1Diakibbv69ibQyuVg/0?wx_fmt=png&from=appmsg)
 
 > JDK1.8  中为什么使用内置锁 synchronized替换 可重入锁 ReentrantLock？★★★★★
 
@@ -51,13 +51,13 @@ Segment 继承了 ReentrantLock，所以 Segment 是一种可重入锁，扮演�
 
 **先来看JDK1.7**
 
-![](https://xuemingde.com/pages/image/2022/06/02/1036mwo1VB.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwytBTcqkQ0ibkCqyricVyu0poFBbdoURVyZOrLpkicVnJs7pptyia2pzO3Hw/0?wx_fmt=png&from=appmsg)
 
 先定位到相应的 Segment ，然后再进行 put 操作。
 
 源代码如下：
 
-![](https://xuemingde.com/pages/image/2022/06/02/1037MkDJZI.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyTcB3tHn11AjGp9GmyeU8jv6SFyHiaUR6hrC8rGsNTrgBdMW6W6f22Jw/0?wx_fmt=png&from=appmsg)
 
 首先会尝试获取锁，如果获取失败肯定就有其他线程存在竞争，则利用 `scanAndLockForPut()` 自旋获取锁。
 
@@ -82,7 +82,7 @@ Segment 继承了 ReentrantLock，所以 Segment 是一种可重入锁，扮演�
 
 源代码如下：
 
-![](https://xuemingde.com/pages/image/2022/06/02/1038xjZFOh.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyua269xYAFWWGcYw7eoJ0jfnSibjia4ib9u26WwzUJicia7ibWRGjnVX3EzaQ/0?wx_fmt=png&from=appmsg)
 
 > ConcurrentHashMap  的 get 方法执行逻辑是什么？★★★★
 
@@ -94,7 +94,7 @@ Segment 继承了 ReentrantLock，所以 Segment 是一种可重入锁，扮演�
 
 源代码如下：
 
-![](https://xuemingde.com/pages/image/2022/06/02/1038nmFxF6.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyRj2licLfo0Jiao6IM4axyvD0wES4ks77WITpKC0RfUxQDfDPy9LezTkA/0?wx_fmt=png&from=appmsg)
 
 **再来看JDK1.8**
 
@@ -107,7 +107,7 @@ Segment 继承了 ReentrantLock，所以 Segment 是一种可重入锁，扮演�
 
 源代码如下：
 
-![](https://xuemingde.com/pages/image/2022/06/02/1039VisPxv.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwydzX0ib4sce8g7wk3HSfzIqswhMFNLgJvt8FKLAG7mWFFJ0TC4RD9dVg/0?wx_fmt=png&from=appmsg)
 
 > ConcurrentHashMap 的 get 方法是否要加锁，为什么？★★★
 
@@ -115,13 +115,13 @@ get 方法不需要加锁。因为 Node 的元素 value 和指针 next 是用 vo
 
 这也是它比其他并发集合比如 Hashtable、用 Collections.synchronizedMap()包装的 HashMap 效率高的原因之一。
 
-![](https://xuemingde.com/pages/image/2022/06/02/1039dvKas4.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyN1D68ahx2OLzWnOed3RzMt7Z2UdoWadr2Nq7xd3tHK76wicibxZ1Dcibg/0?wx_fmt=png&from=appmsg)
 
 > get 方法不需要加锁与 volatile 修饰的哈希桶数组有关吗？★★★
 
 没有关系。哈希桶数组`table`用 volatile 修饰主要是保证在数组扩容的时候保证可见性。
 
-![图片](https://xuemingde.com/pages/image/2022/06/02/1040RIFKvY.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwybvaeO1UOriaP5dN7FUyWbI6iayOITZKYyiaJLlj5eWUcJhZibFnuKfl5Vg/0?wx_fmt=png&from=appmsg)
 
 
 
@@ -187,7 +187,7 @@ ConcurrentHashMap 的效率要高于 Hashtable，因为 Hashtable  给整个哈�
 
 Hashtable 是使用 synchronized来实现线程安全的，给整个哈希表加了一把大锁，多线程访问时候，只要有一个线程访问或操作该对象，那其他线程只能阻塞等待需要的锁被释放，在竞争激烈的多线程场景中性能就会非常差！
 
-![](https://xuemingde.com/pages/image/2022/06/02/1042BHfuE2.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyVo8qoicUoqMpx4fbFuobFHzkXibicYgccSeDFwV7uqYjUMrJibdzicfGGicw/0?wx_fmt=png&from=appmsg)
 
 
 
@@ -195,7 +195,7 @@ Hashtable 是使用 synchronized来实现线程安全的，给整个哈希表加
 
 还可以使用`Collections.synchronizedMap`方法，对方法进行加同步锁。
 
-![](https://xuemingde.com/pages/image/2022/06/02/1043OUgPJd.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwysFRMCKNo2J51RvoDaVMAb0VcdYT7Vq5QbLbicr3S8gwABSsuNNRIic2A/0?wx_fmt=png&from=appmsg)
 
 如果传入的是 HashMap 对象，其实也是对 HashMap 做的方法做了一层包装，里面使用对象锁来保证多线程场景下，线程安全，本质也是对 HashMap 进行全表锁。**在竞争激烈的多线程环境下性能依然也非常差，不推荐使用！**
 

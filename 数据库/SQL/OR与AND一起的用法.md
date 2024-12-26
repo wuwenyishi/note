@@ -3,7 +3,7 @@
 
 
 数据1  
-![150612](https://xuemingde.com/pages/image/2022/23/150612.jpg)
+![150612](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/23/150612.jpg)
 
 查询  
 ```sql
@@ -11,7 +11,7 @@
 SELECT * from student WHERE id = 1 or id = 2 AND age = 20;
 ``` 
 返回结果  
-![150837](https://xuemingde.com/pages/image/2022/23/150837.jpg)
+![150837](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/23/150837.jpg)
 
 查询  
 
@@ -20,18 +20,18 @@ SELECT * from student WHERE id = 1 or id = 2 AND age = 20;
 SELECT * from student WHERE (id = 1 or id = 2 ) AND age = 20;
 ```  
 返回结果   
-![151058](https://xuemingde.com/pages/image/2022/23/151058.jpg)  
+![151058](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/23/151058.jpg)  
 
 数据2。  
-![151502](https://xuemingde.com/pages/image/2022/23/151502.jpg)  
+![151502](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/23/151502.jpg)  
 
 查询返回结果  
-![151536](https://xuemingde.com/pages/image/2022/23/151536.jpg)  
+![151536](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/23/151536.jpg)  
 
 查询返回结果  
-![151700](https://xuemingde.com/pages/image/2022/23/151700.jpg)
+![151700](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/23/151700.jpg)
 
 查询返回结果  
-![151721](https://xuemingde.com/pages/image/2022/23/151721.jpg)
+![151721](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/23/151721.jpg)
 
 

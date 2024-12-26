@@ -12,7 +12,7 @@
 聊了客户端和 `注册中心`，另外一个重要的角色自然是服务端，服务端最重要的任务便是提供服务接口的真正实现并在某个端口上监听网络请求，监听到请求后从网络请求中获取到对应的参数（比如服务接口、方法、请求参数等），再根据这些参数通过`反射`的方式调用接口的真正实现获取结果并将其写入对应的响应流中。
 
 综上所述，一次基本的 RPC 调用流程大致如下：
-![154901](https://xuemingde.com/pages/image/2022/03/28/154901.jpg)
+![154901](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/28/154901.jpg)
 
 ## 基本实现
 
@@ -85,7 +85,7 @@ http\://www.storm.com/schema/storm-reference=com.hsunfkqm.storm.framework.spring
 ```
 
 将编写好的文件放入 `classpath` 下的 `META-INF` 目录下：  
-![154921](https://xuemingde.com/pages/image/2022/03/28/154921.jpg)
+![154921](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/28/154921.jpg)
 
 在 Spring 配置文件中配置服务类：
 
@@ -606,13 +606,13 @@ public class Client {
 ### 结果
 
 生产者：
-![154827](https://xuemingde.com/pages/image/2022/03/28/154827.jpg)
+![154827](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/28/154827.jpg)
 
 消费者：
-![154812](https://xuemingde.com/pages/image/2022/03/28/154812.jpg)
+![154812](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/28/154812.jpg)
 
 注册中心
-![154746](https://xuemingde.com/pages/image/2022/03/28/154746.jpg)
+![154746](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/28/154746.jpg)
 
 ## 总结
 

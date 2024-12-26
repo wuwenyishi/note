@@ -36,7 +36,7 @@ readview大概的算法流程：
 
 这里借鉴[@SnailMann ](https://blog.csdn.net/SnailMann/article/details/94724197) 的一张流程图：
 
-![MnGVLF](https://xuemingde.com/pages/image/others/MnGVLF.jpg)
+![MnGVLF](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/MnGVLF.jpg)
 
 幻读，就是A事务读取表中某字段小于5的数据为3条，该事务没有提交，此时，B事务插入了一条符合A事务的查询条件的数据，并且提交了事务，A事务再次查询时会得到4条。这种情况在没有使用MVCC时会发生，如果使用了MVCC就不会发生。如果B事务提交后，A事务更新了该字段所有小于5的数据操作，之后再去获取该字段小于5的数据，还是会得到4条，所以，幻读问题又发生了。
 

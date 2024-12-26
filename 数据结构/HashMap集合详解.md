@@ -58,13 +58,13 @@ HashMap 在 JDK 7 中会导致死循环的问题。因为在 JDK 7 中，多线�
 
 
 #### 多线程环境下使用HashMap为什么会出现死循环
-![](https://xuemingde.com/pages/image/others/20210315094833.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyBZx0uFN9KX83laNsegXRqI49MY4D8qZNpECQhYxMv9rjCZWcYLZArg/0?wx_fmt=png&from=appmsg)
 
-![image-20210315094912288](https://xuemingde.com/pages/image/others/image-20210315094912288.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwy7rtiaYTcUK2w9zhnXSGoia0IUW7Ba8MIqtQLiabYlfrALPLm2yeRS3XFQ/0?wx_fmt=png&from=appmsg)
 
 
 #### HashMap put执行过程
-![image](https://xuemingde.com/pages/image/others/1606100383222-b82eb9d3-e207-4c7a-9a1f-d401c97e0a0e.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwymT1fasZLxv3gYSHmY32jSAsWelAo1ibniawYEZiciclJ28andBazXQj4aw/0?wx_fmt=png&from=appmsg)
 
 
 源码解析：

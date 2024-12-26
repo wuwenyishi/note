@@ -2,7 +2,7 @@
 
 在上家公司做IM消息系统的时候，一直是使用 WebSocket 作为收发消息的基础组件，今天就和大家聊聊在 Java 中，使用 WebSocket 所常见的四种姿势，如果大家以后或者现在碰到有要使用 WebSoocket 的情况可以做个参考。
 
-![img](https://xuemingde.com/pages/image/2022/05/11/0752-Sf6CD4.awebp)
+![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyPTux5ia1L4ibzFQbmD69wJ5418wU26ZvMicT41ibDHgmC4LvC7Lr0dibZrw/0?wx_fmt=png&from=appmsg)
 
 上面的思维导图已经给大家列出了三种使用 WebSocket 的方式，下文会对它们的特点进行一一解读，不同的方式具有不同的特点，我们先按下不表。
 
@@ -144,7 +144,7 @@ public class WebSocketConfig {
 
 最后上个简陋的 WS 效果示例图，前端方面直接使用 HTML5 的 WebScoket 标准库，具体可以查看我的仓库代码：
 
-![img](https://xuemingde.com/pages/image/2022/05/22/1005-A2Or0g.jpg)
+![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyW1RjXTOU6lTW170Ig0W2zb34M08siakb3p6CMBoicBg0CtTGTFWqxlUA/0?wx_fmt=png&from=appmsg)
 
 
 
@@ -265,7 +265,7 @@ Spring 的方式也就以上这些内容了，不知道大家是否感觉 Spring
 
 最后上个简陋的 WS 效果示例图，前端方面直接使用 HTML5 的 WebScoket 标准库，具体可以查看我的仓库代码：
 
-![img](https://xuemingde.com/pages/image/2022/05/11/0800-wDUc79.awebp)
+![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwy1KkC6ywDspg2VlN5iaMEzC1g7vq6NlaVbXKibian3TOeQs2OZ1fYbDphQ/0?wx_fmt=png&from=appmsg)
 
 
 
@@ -322,7 +322,6 @@ public class SocketIoConfig {
 
 ```java
 [ntLoopGroup-2-1] c.c.socketio.SocketIOServer : SocketIO server started at port: 8001
-复制代码
 ```
 
 这就代表启动成功了，接下来就是要对 WS 消息做一些处理了：
@@ -363,7 +362,7 @@ public class SocketIoHandle {
 
 最后再上一个简陋的效果图：
 
-![img](https://xuemingde.com/pages/image/2022/05/11/0801-vF70Qs.awebp)
+![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyh4icT3BKjnQLzQJI9Zp8dRF40ibap2HJm9F2149ZGnicjcX9qo7LecWtw/0?wx_fmt=png&from=appmsg)
 
 由于前端代码不再是标准的 HTML5 的连接方式，所以我这里简要贴一下相关代码，具体更多内容可以看我的代码仓库：
 
@@ -514,12 +513,11 @@ public class WsTextInBoundHandle extends SimpleChannelInboundHandler<TextWebSock
         ctx.close();
     }
 }
-复制代码
 ```
 
 这里面的方法我都不说了，看名字就差不多知道了，主要是看一下这个类的泛型：**TextWebSocketFrame**，很明显这是一个 WS 文本消息的类，我们顺着它的定义去看发现它继承了 **WebSocketFrame**，接着我们去看它的子类：
 
-![img](https://xuemingde.com/pages/image/2022/05/11/0801-THU9Ds.awebp)
+![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyLpU4b970pJxaDewaSX7ibvg08Q0RMkgdfVpicowHFDM4xwPn75Kgzh8g/0?wx_fmt=png&from=appmsg)
 
 一图胜千言，我想不用多说大家也都知道具体的类是处理什么消息了把，在上文的示例中我们是一定了一个文本 WS 消息的处理类，如果你想处理其他数据类型的消息，可以将泛型中的 **TextWebSocketFrame** 换成其他 **WebSocketFrame** 类就可以了 **。**
 
@@ -527,7 +525,7 @@ public class WsTextInBoundHandle extends SimpleChannelInboundHandler<TextWebSock
 
 最后上个简陋的 WS 效果示例图，前端方面直接使用 HTML5 的 WebScoket 标准库，具体可以查看我的仓库代码：
 
-![img](https://xuemingde.com/pages/image/2022/05/11/0803-UL861t.awebp)
+![](https://mmbiz.qpic.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwynVVG1FiaxSOd105hh8M828ZfGNT33HB1eBWlzFpKwJk9k2hE8JoVP1A/0?wx_fmt=png&from=appmsg)
 
 
 

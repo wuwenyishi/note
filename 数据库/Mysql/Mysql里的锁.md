@@ -14,7 +14,7 @@
 
 
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1029-UQSDtz.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1029-UQSDtz.jpg)
 
 
 ## **锁的分类。**
@@ -39,7 +39,7 @@
 
 
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1029-C3JaXH.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1029-C3JaXH.jpg)
 
 
 
@@ -50,7 +50,7 @@
 
 
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1030-7folzQ.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1030-7folzQ.jpg)
 
 
 
@@ -64,7 +64,7 @@
 
 
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1030-PJKzGs.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1030-PJKzGs.jpg)
 
 ## **行锁**
 
@@ -74,7 +74,7 @@
 
 
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1031-BPV25T.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1031-BPV25T.jpg)
 
 
 
@@ -84,7 +84,7 @@
 
 
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1031-a3WNay.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1031-a3WNay.jpg)
 
 
 
@@ -104,7 +104,7 @@
 
 
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1032-pesciR.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1032-pesciR.jpg)
 
 
 
@@ -116,7 +116,7 @@
 
 
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1032-RaUbEx.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1032-RaUbEx.jpg)
 
 
 
@@ -130,7 +130,7 @@
 
 
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1033-cQMHbj.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1033-cQMHbj.jpg)
 
 
 
@@ -166,7 +166,7 @@
 
 
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1034-ec6pp9.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1034-ec6pp9.jpg)
 
 
 

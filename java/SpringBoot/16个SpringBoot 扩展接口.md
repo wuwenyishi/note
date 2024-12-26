@@ -12,7 +12,7 @@ Spring的核心思想就是容器，当容器refresh的时候，外部看上去�
 
 以下是spring容器中Bean的生命周期内所有可扩展的点的调用顺序，下面会一个个分析
 
-![100758XQzFg0](https://xuemingde.com/pages/image/2023/09/20/100758XQzFg0.png)
+![100758XQzFg0](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2023/09/20/100758XQzFg0.png)
 
 ### **3、ApplicationContextInitializer**
 

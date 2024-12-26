@@ -81,7 +81,7 @@ Undo log 主要用于记录数据被修改之前的日志，在表信息修改�
 
 **（1）首先准备一张原始原始数据表**
 
-![1014-F3zJiu](https://xuemingde.com/pages/image/2022/04/07/1014-pZjl2q.jpg)
+![1014-F3zJiu](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1014-pZjl2q.jpg)
 
 
 
@@ -97,7 +97,7 @@ Undo log 主要用于记录数据被修改之前的日志，在表信息修改�
 
 （3）最后执行完结果如图：
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1017-gKgh48.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1017-gKgh48.jpg)
 
 ### 2-5、Read view
 
@@ -151,7 +151,7 @@ Undo log 主要用于记录数据被修改之前的日志，在表信息修改�
 
 ## 三、Innodb实现MCC的原理
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1017-C85dvp.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1017-C85dvp.jpg)
 
 ### 3-1、模拟MVCC实现流程
 
@@ -159,7 +159,7 @@ Undo log 主要用于记录数据被修改之前的日志，在表信息修改�
 
 **（1）创建user_info表，插入一条初始化数据**
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1017-S1wPS3.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1017-S1wPS3.jpg)
 
 
 
@@ -179,7 +179,7 @@ Undo log 主要用于记录数据被修改之前的日志，在表信息修改�
 
 **执行流程如下图：**
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1018-WDgWpW.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1018-WDgWpW.jpg)
 
 **执行流程说明：**
 
@@ -191,17 +191,17 @@ Undo log 主要用于记录数据被修改之前的日志，在表信息修改�
 
 
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1018-1vklPX.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1018-1vklPX.jpg)
 
 
 
 **（4）事务B： 此时事务B获得一个read view ，read view对应的值如下**
 
-![1018-OSba8r](https://xuemingde.com/pages/image/2022/04/07/1018-O8GlSP.jpg)
+![1018-OSba8r](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1018-O8GlSP.jpg)
 
 **（5）事务B： 执行查询语句，此时得到的是事务A修改后的数据**
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1019-GRx57G.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1019-GRx57G.jpg)
 
 
 
@@ -217,7 +217,7 @@ Undo log 主要用于记录数据被修改之前的日志，在表信息修改�
 
 发现不满足read view显示条件，所以从undo lo获取历史版本的数据再和read view进行匹配，最后返回数据如下。
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1019-YvOauz.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1019-YvOauz.jpg)
 
 
 ## 四、补充
@@ -226,13 +226,13 @@ Undo log 主要用于记录数据被修改之前的日志，在表信息修改�
 
 RC(read commit) 级别下同一个事务里面的每一次查询都会获得一个新的read view副本。这样就可能造成同一个事务里前后读取数据可能不一致的问题（重复读）
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1019-x1NF8M.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1019-x1NF8M.jpg)
 
 
 
 RR(重复读)级别下的一个事务里只会获取一次read view副本，从而保证每次查询的数据都是一样的。
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1019-EwbKQo.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1019-EwbKQo.jpg)
 
 
 
@@ -284,7 +284,7 @@ READ_UNCOMMITTED 级别的事务不会获取read view 副本。
 
 7、最后得到的结果是，插入的数据不会显示，因为插入的数据事务ID大于等于 readview里的最大活跃事务ID。
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1020-iIrKAA.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1020-iIrKAA.jpg)
 
 
 
@@ -292,13 +292,13 @@ READ_UNCOMMITTED 级别的事务不会获取read view 副本。
 
 首先关闭数据库的自动提交事务功能。
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1020-8492ES.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1020-8492ES.jpg)
 
 
 
  然后使用手动提交事务的方式，进行一次快照读，但是不提交事务，然后启动插入数据的事务，进行数据插入 commit，结果我发现在使用快照读的时候，数据是可以插入成功的，那这也就说明了一个问题，**快照读的时候就根本没加锁，否则的话数据是不可能插入成功的，而且在插入数据提交成功后，我们执行第二条查询 语句是读取不到中间插入的这条数据的，这也就说明在没有加锁的情况下，基于历史版本的MVCC快照读是可以避免幻读问题的**。
 
-![1020-gEDxYX](https://xuemingde.com/pages/image/2022/04/07/1020-iUMz8J.jpg)
+![1020-gEDxYX](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1020-iUMz8J.jpg)
 
 
 
@@ -312,7 +312,7 @@ READ_UNCOMMITTED 级别的事务不会获取read view 副本。
 
 首先关闭数据库的自动提交事务功能，  使用当前读的方式演示和上面一样的流程，结果发现在当前读的时候没有提交事务之前是根本无法进行数据插入的，所以这也就说明了，使用当前读的时候会对这个范围内的数据进行加锁，所以无法在查询的范围内进行数据插入，这无疑也证明了在当前读的情况下mysql是使用锁的机制来避免出现重复读和幻读问题的。
 
-![img](https://xuemingde.com/pages/image/2022/04/07/1021-hFAdty.jpg)
+![img](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1021-hFAdty.jpg)
 
 
 > 原文： [数据库基础（四）Innodb MVCC实现原理 - 知乎](https://zhuanlan.zhihu.com/p/52977862)

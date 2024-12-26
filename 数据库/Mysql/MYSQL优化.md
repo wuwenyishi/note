@@ -117,7 +117,7 @@ char类型是定长的，MySQL总是根据定义的字符串长度分配足够�
 
 BLOB和TEXT家族之间仅有的不同是BLOB类型存储的是二进制数据，没有排序规则或字符集，而TEXT类型有字符集和排序规则。
 
-![UvsXY4](https://xuemingde.com/pages/image/2022/03/07/UvsXY4.png)
+![UvsXY4](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/07/UvsXY4.png)
 
 
 

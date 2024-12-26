@@ -2,13 +2,13 @@
 
 Handler dispatch failed; nested exception is java.lang.NoClassDefFoundError: 
 
- ![](https://xuemingde.com/pages/image/2022/03/08/el10mD.png)
+ ![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/08/el10mD.png)
 
 
 
 解决：
 
- ![](https://xuemingde.com/pages/image/2022/03/08/mwqlOu.png)
+ ![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/08/mwqlOu.png)
 
 Mapper 引用的包错误。
 

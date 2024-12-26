@@ -1,24 +1,4 @@
-<div style="text-align: center;"></div>
-<!-- more -->
 
-
-
-
-
-> Alibaba Java 技术图谱:  https://developer.aliyun.com/graph/java?spm=a2c6h.21110250.J_9767998450.3.245a3c679DlkVt
-
-
-
-> 原文地址：https://developer.aliyun.com/article/783124?spm=a2c6h.24874632.0.0.21e53ccdPwXu9S
-
-
-
->  **简介：**本文主要介绍什么是关联子查询以及如何将关联子查询改写为普通语义的sql查询。                
-
-![image.png](https://xuemingde.com/pages/image/2022/03/220112.png)
-
-作者 | 猫来
-来源 | [阿里技术公众号](https://mp.weixin.qq.com/s/Whx50KNUuXORO05bi7PECw)
 
 本文主要介绍什么是关联子查询以及如何将关联子查询改写为普通语义的sql查询。
 
@@ -30,7 +10,7 @@
 
 因为这种可以使用关联列的灵活性，将sql查询写成子查询的形式往往可以极大的简化sql以及使得sql查询的语义更加方便理解。下面我们通过使用tpch schema来举几个例子以说明这一点。tpch  schema是一个典型的订单系统的database，包含customer表，orders表，lineitem表等，如下图：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220129.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwydhmG0dcUtwickAlsyJLWgCSVIqibbvkI4GcWunDK47YPHTZgrr5yrkMQ/0?wx_fmt=png&from=appmsg)
 
 假如我们希望查询出“所有从来没有下过单的客户的信息”，那么我们可以将关联子查询作为过滤条件。使用关联子查询写出的sql如下。可以看到这里的not exists子查询使用列外部的列c_custkey。
 
@@ -151,7 +131,7 @@ WHERE  l2.partkey = p.partkey  -- p.partkey是外部查询的列
 
 优化器将这个查询表示为如下图的逻辑树：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220237.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwypGl9j3RxmMSmoAI5UNCtgalDeofg1dibBgxrZsoianRtR27goxMXwppQ/0?wx_fmt=png&from=appmsg)
 
 如果数据库系统不支持查看逻辑树，可以通过explain命令查看物理计划，一般输出如下图：
 
@@ -178,7 +158,7 @@ WHERE  l2.partkey = p.partkey  -- p.partkey是外部查询的列
 
 例子中对应的逻辑计划和相关定义如下图所示，explain返回结果中第6-8行为外部查询，9-13行为子查询，关联部位在子查询中第12行的filter。
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220305.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwy68MIyiaXPLFibICavgicSiaF8eCtrouuB0ZgicgOBibMoHdUsg4eNdb53IeA/0?wx_fmt=png&from=appmsg)
 
 这个算子的输出等价于一种iterative的执行的结果。也就将左子树的每一行关联列的值带入到右子树中进行计算并返回一行结果。有些类似将子查询看成一个user defined  function（udf），外部查询的关联列的值作为这个udf的输入参数。需要注意的是，我们需要子查询是确定的，也就是对同样值的关联列，每次运行子查询返回的结果应该是确定的。
 
@@ -191,8 +171,8 @@ FROM   lineitem l2
 WHERE  l2.partkey = 25
 ```
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220332.png)
-![image.png](https://xuemingde.com/pages/image/2022/03/220355.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyI5nwibheMcGA046ib071FmRzpF1hFibAroEL4p9xtSyFm6ibeXolgTlQ3w/0?wx_fmt=png&from=appmsg)
+![image.png](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/220355.png)
 
 需要注意的是，如果计算结果为空集，则返回一行null。而如果运行中子查询返回了超过一行的结果，应该报运行时错误。在逻辑计划里，用enforcesinglerow这个node来约束。
 
@@ -218,7 +198,7 @@ correlatedjoinnode的输出就是在外部查询的结果上增加了一列，�
 
 表现在计划上，就是将correleted join算子向右下推到产生关联的部位的下面。当correlated join算子的左右子树没有关联列的时候，correlated  join算子就可以转换成join算子。这样子查询就通过和外部查询join的方式获得了关联列的值，从而可以自上而下计算，回到原本的计算方式。如下图，下图中rest subquery为在关联产生部位之前的子查询部分。当correlated join 推到产生关联的部位之下，就可以转换为普通的join了。
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220408.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyKMeiaPyCBNWoiaWhiaDhRibQKK36KiaMia4iagD5NicZrxdd36N6HlfSZwrpPQ/0?wx_fmt=png&from=appmsg)
 
 correlated join推过的那些算子都是需要进行改写，以保持等价性（上图的栗子中subquery变为了subquery’）。
 
@@ -236,7 +216,7 @@ correlated join推过的那些算子都是需要进行改写，以保持等价�
 
 我们就可以把correlated join转换成普通的没有join criteria的leftjoin算子。
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220414.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyCoDKibS9JQpOPiapGzJBWRGCepQQiaElst2MRuHicIiaYORSRH8e022w80w/0?wx_fmt=png&from=appmsg)
 
 > 注：需要在subquery上添加enforcesinglerow来保证join语义和correlatedjoin相同（不会造成input的膨胀）。
 
@@ -244,23 +224,23 @@ correlated join推过的那些算子都是需要进行改写，以保持等价�
 
 当correlated join右子树中最上面的节点为一个关联filter而他的下面无关联时，可以直接将这个filter放到left join的条件中，也可以理解为filter上提。如下图：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220447.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyPpjZMHJOR9P0Md3gDc7uDiaPq7KaUkEialiasvqEdickm3cKCtB8V8lzgA/0?wx_fmt=png&from=appmsg)
 
 **转换3  下推穿过filter**
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220456.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwy41GbMcub8BAzh5SyUK669T8y8elnsrKUFxyNiaXHTFemibgt58aYrYrw/0?wx_fmt=png&from=appmsg)
 
 论文中correlatedjoin*可以直接推过filter。如果需要下推的为correlatedjoin，则需要对filter进行改写，改写成带有case when的project。当subquery的行不满足filter的条件时应输出null。
 
 **转换4  下推穿过project**
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220503.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwy2Y9fdpJ7jAqA7DHom3donK8Wnah1zO9GElXSwI8jm2Qycfhic1HWTWA/0?wx_fmt=png&from=appmsg)
 
 correlated join下推过project，需要在project中添加input的输出列。
 
 **转换5 下推穿过aggregation**
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220512.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyGIhc7vZrq9nA1S3dLE2icrl7yb9PKlyZea7GYvek28qOybXGppicGy1A/0?wx_fmt=png&from=appmsg)
 
 correlated join下推到带有group by的aggregation时，需要对aggregation进行改写。
 
@@ -268,7 +248,7 @@ correlated join下推到带有group by的aggregation时，需要对aggregation�
 
 如果aggregation为全局的，那么还需要进行额外的处理。如下图：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220518.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyX9zHBiaPrTZ4BFx6sYYL9n7xUlpbSIWibqwAokZFYAsnv18HLM463QDw/0?wx_fmt=png&from=appmsg)
 
 correlated join下推到全局aggregation的时候，需要对aggregation增加input的列(以及key)作为group  by的列。这个下推规则还需要一个前提，那就是aggregation函数需要满足满足特性 agg(Ø)=agg(null)  。这个的意思就是aggragtion函数需要对空集和对null的计算结果是相同的。
 
@@ -278,33 +258,33 @@ correlated join下推到全局aggregation的时候，需要对aggregation增加i
 
 带入之前的tpch q17的栗子中，我们先使用将correlated join推到子查询中的project下面，查询变为：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220546.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyBvUuF2tZbndaZXtcibCoa8JJx6rgPUF18wZ39pjPCkOEcNwI3Ikyc4w/0?wx_fmt=png&from=appmsg)
 
 然后下推穿过这个agg，并改写这个agg，如下图：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220554.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyppYncAgJWl6AjNo8SHq5QWVF9YffE40XQwDiaOmdiceqZGjm7PwVO6QA/0?wx_fmt=png&from=appmsg)
 
 这里我们忽略 avg(Ø)!=avg(null) 。如果考虑这个情况，则需要mark子查询全部的行，在correlated  join之后根据子查询的结果结合mark的值对空集进行特别处理（将mark了的行的值从null变为0）。感兴趣的读者可以参考下一张中q17的最终计划。
 
 接着直接调用之前的规则2，上提这个filter。这样这个查询就变为普通的没有关联的查询了。
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220602.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyW1liadZdOicUNI7dUD9dCzibaRAiazMJB7FxiaUPLNCfXxxichS1atdW8CgA/0?wx_fmt=png&from=appmsg)
 
 #### 2  结果复用
 
 回顾上一节所说，子查询的查询结果是带入每一行关联列的值之后计算得出的，那么显而易见相同值的关联列带入子查询中计算出的结果是完全相同的。在上面的栗子中，对同样的p.partkey，correlatedjoin输出的子查询的结果是相等的。如下图中外部查询partkey为25的话产生的关联子查询时是完全相同的，那么结果也自然相同。
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220607.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyI5nwibheMcGA046ib071FmRzpF1hFibAroEL4p9xtSyFm6ibeXolgTlQ3w/0?wx_fmt=png&from=appmsg)
 
 15年Newmann的论文Unnesting Arbitrary Queries[3]介绍了一种方法就是先对外部查询里关联列取distinct，再将correlated join返回的值和原本的外部查询根据关联列进行left join，如下图所示：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220616.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyhWuH6zaeXiblKcWg3Eqib7sfu7qJTfSjudgWrkgibOrx6xZ4Liczty09Ew/0?wx_fmt=png&from=appmsg)
 
 这里的not distinct join的条件对应mysql里面的<=>，null<=>null的结果为true，是可以join到一起的。
 
 带入到之前的例子中如下图所示，对外部查询的关联列partkey先进行distinct，然后带入子查询计算结果，最后再通过join将对应的结果接到原本的外部查询上。
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220622.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyJvk3etET91hueKibxovdRhGcJDK6sHaAvMxu7vkwhJOUAaiawyiaPLmiag/0?wx_fmt=png&from=appmsg)
 
 如果进行了上述转换，那么我们可以认为新的input的关联列永远是distinct的。而现在的correlatedjoin*算子可以允许input的列被过滤。这样做的好处除了对于相同的列不进行重复的子查询的计算之外，主要还有下面两个：
 
@@ -315,7 +295,7 @@ correlated join下推到全局aggregation的时候，需要对aggregation增加i
 
 如果按照Unnesting Arbitrary  Queries[3]的方法进行解关联，需要将input的一部分结果进行复用，这个复用需要执行引擎的支持。需要注意的是，当系统不支持复用的时候，我们需要执行两次input的子树（如下图），这个时候就需要input这颗子树的结果是deterministic的，否则无法用这个方法进行解关联。
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220632.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyiaWf0PTzd6C1wH0Tr90XTq8vaiaiaabM1J45DEkP3GOrl4W7X2aLaPgvw/0?wx_fmt=png&from=appmsg)
 
 ### 三  关联子查询的优化
 
@@ -346,15 +326,15 @@ WHERE t1.c2 < (
 
 这里由于t2.c1 = t2.c1可以推到agg 上面(因为对于子查询这是一个在group  by列上的条件)，我们就可以进行下面的转换。先把关联的filter上提（有时需要改写），这样就只要把correlatedjoin推过filter，调用转换2就可以了。
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220655.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwymiaqa2yqibtxJ9UAIIbD8ocsmZOOMv7yGbOevoiadqoOjUZYzBXJEHBCA/0?wx_fmt=png&from=appmsg)
 
 更具体的例子就是前文提到的tpch q17。这里的scalar子查询作用在过滤条件中的情况也可以进行进一步改写。
 
 下图为按照之前说的理论下推correlated join并改写为left join之后的逻辑计划。
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220701.png)
-![image.png](https://xuemingde.com/pages/image/2022/03/220710.png)
-![image.png](https://xuemingde.com/pages/image/2022/03/220717.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyg3RxUCYBOIE3BCaKeBdh9dibT4VgYXXibITMDs5spIVSTvZg45MBZzPg/0?wx_fmt=png&from=appmsg)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyXZic0pPWMovQJBd2hgIa08K30QzWickctMt6SmwV1b5WzXR6r6uOFTMw/0?wx_fmt=png&from=appmsg)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwycvruHBic4rGpTkkjMTpxpFm9o0SySgjNV8sa1oJ2ZroSKS4SKsj2ppw/0?wx_fmt=png&from=appmsg)
 
 而由于这个scalar子查询是作为filter条件的，这种情况下子查询没有结果返回为null对应的外部查询是一定会被过滤掉的。所以correlatedjoin可以直接转为 correlatedjoin*，再加上将filter进行上提，我们可以得到下面的计划。这样改写的好处是可以在join前先进行agg(early agg)。坏处就是如果不小心处理，很容易造成语义不等价造成count bug。
 
@@ -366,13 +346,13 @@ WHERE t1.c2 < (
 
 window解关联的改写就是在外部查询包含子查询中全部的表和条件时，可以直接使用window将子查询的结果拼接到外部查询上。他好处是节约了很多tablescan。比如说tpch q2。可以进行下面的改写：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220722.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyMgKCuIQKSLSiansPZhXP7nQJofpPoMSufVKba1VBNqOXoOHAjDeDDdg/0?wx_fmt=png&from=appmsg)
 
 这里之所能改写成window是因为外部查询包含了内部查询全部的表和条件。而且agg函数min也满足特性agg(Ø)=agg(null) （如果不满足，需要对行进行mark以及用case when 改写输出）。
 
 可以看到改写后tablescan的数量大大减少。更进一步，优化器后面的优化规则会进行根据primarykey的信息以及agg函数的特性进行join 和 window的顺序交换从而进一步减少window算子输入的数据量（filter-join pushdown）。
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220729.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyLk8uobDics2SL3JFdfnZXRVp22Nyjz6xg09PoVcHQ4bJ3eUB8FRR7Pg/0?wx_fmt=png&from=appmsg)
 
 这些好处很多文章里都说了。我们在这里讨论一下这样改写的不好的地方：
 
@@ -488,7 +468,7 @@ from
 
 这个查询对应的逻辑计划如下：
 
-![image.png](https://xuemingde.com/pages/image/2022/03/220752.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyzeUAYzrqSIDVicwELzkf1ud7icPZnDXoxlRS1wrdQN96lIpv8LVYcPDw/0?wx_fmt=png&from=appmsg)
 
 其输出结果为在左子树结果上加一列in的结果，in的结果有三种可能true,false和null。
 
@@ -523,10 +503,10 @@ SELECT t1.c1
 ```
 
 sq1解开关联后的计划如下：
-![image.png](https://xuemingde.com/pages/image/2022/03/220813.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyMjRFee25NhQQvLa7NMmHp1PhTUmDvm6jo7TU9icUiaMW17HcK45eXFpw/0?wx_fmt=png&from=appmsg)
 
 sql2解开关联后的计划如下：
-![image.png](https://xuemingde.com/pages/image/2022/03/220828.png)
+![](https://mmbiz.qlogo.cn/mmbiz_png/3eqXwttvOLvED4MbUa8NsovrpXwicGqwy7H88sFLvUTZqb3WicJadtMJArzonpM8IUg50wc3Licw0kBAia0micRdfSQ/0?wx_fmt=png&from=appmsg)
 
 对于sql1来说，从语义上理解，外部查询的每一行带入子查询里扫过的行都是没有重叠的，所以代价和innerjoin on等值条件是一样的。再加上同样的外部行对应的子查询中min的结果相同可以应用early agg从而可以进一步优化。
 

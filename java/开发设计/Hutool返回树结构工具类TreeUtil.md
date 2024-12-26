@@ -37,7 +37,7 @@ public class MenuInfo implements Serializable {
 
 数据库数据如下：
 
-![](https://xuemingde.com/pages/image/2022/04/29/1021-c2LkKr.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/29/1021-c2LkKr.png)
 
 
 

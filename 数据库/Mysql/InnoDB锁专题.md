@@ -54,11 +54,11 @@ insert into account(id,name,balance)values (3,'Lin',100);
 
 
 
-![](https://xuemingde.com/pages/image/2022/05/06/0840-zjCmem.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0840-zjCmem.png)
 
 手动验证了一把，流程如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0841-9C4X0u.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0841-9C4X0u.png)
 
 
 
@@ -66,7 +66,7 @@ insert into account(id,name,balance)values (3,'Lin',100);
 
 我们再来看下，在**串行化隔离级别**下，同样的SQL执行流程，又是怎样的呢？
 
-![](https://xuemingde.com/pages/image/2022/05/06/0841-Rzo6ff.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0841-Rzo6ff.png)
 
 为啥会阻塞等待超时呢？这是因为**串行化隔离级别**下，对写的SQL**加锁**啦。我们可以再看下加了什么锁，命令如下：
 
@@ -76,7 +76,7 @@ SET GLOBAL innodb_status_output_locks=ON;  开启锁信息输出
 SHOW ENGINE INNODB STATUS
 ```
 
-锁相关的输出内容如下：![](https://xuemingde.com/pages/image/2022/05/06/0843-jljDOq.png)
+锁相关的输出内容如下：![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0843-jljDOq.png)
 
 我们可以看到了这么一把锁：`lock_mode X locks rec but not gap`，它到底是一种什么锁呢？来来来，我们一起来学习下**InnoDB的七种锁**。
 
@@ -84,7 +84,7 @@ SHOW ENGINE INNODB STATUS
 
 
 
-![](https://xuemingde.com/pages/image/2022/05/06/0844-6u96Tm.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0844-6u96Tm.png)
 
 ### 共享/排他锁
 
@@ -102,7 +102,7 @@ InnoDB呢实现了两种标准的**行级锁**：共享锁（简称S锁）、排
 
 `S锁和X锁`的兼容关系如下图表格：
 
-![图片](https://xuemingde.com/pages/image/2022/05/06/0844-1PNaq9.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0844-1PNaq9.png)
 
 `X`锁和`S`锁是对于行记录来说的话，因此可以称它们为**行级锁或者行锁**。我们认为行锁的粒度就比较细，其实一个事务也可以在**表级别下加锁**，对应的，我们称之为**表锁**。给表加的锁，也是可以分为`X`锁和`S`锁的哈。
 
@@ -146,7 +146,7 @@ InnoDB呢实现了两种标准的**行级锁**：共享锁（简称S锁）、排
 
 意向锁仅仅表明意向的锁，意向锁之间**并不会互斥，是可以并行的**，整体兼容性如下图所示：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0844-eSVbOP.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0844-eSVbOP.png)
 
 
 
@@ -210,7 +210,7 @@ Record lock, heap no 3 PHYSICAL RECORD: n_fields 3; compact format; info bits 0
 
 锁模式兼容矩阵（横向是已持有锁，纵向是正在请求的锁）如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0845-cIOfdv.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0845-cIOfdv.png)
 
 
 
@@ -238,7 +238,7 @@ mysql> show variables like '%innodb_autoinc_lock_mode%';
 
 设置事务A和B交替执行流程如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0846-PQAgHX.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0846-PQAgHX.png)
 
 通过上图我们可以看到，当我们在事务A中进行自增列的插入操作时，另外会话事务B也进行插入操作，这种情况下会发生2个奇怪的现象：
 
@@ -288,7 +288,7 @@ insert into t1 values(1,'a'),(3,'c'),(6,'b'),(9,'a'),(10,'d');
 
 假设给定SQL：`delete from t1 where id = 6;`，id是主键。在RC隔离级别下，只需要将主键上`id = 6`的记录，加上`X锁`即可。
 
-![](https://xuemingde.com/pages/image/2022/05/06/0847-KXzs9k.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0847-KXzs9k.png)
 
 我们来验证一下吧，先开启事务会话A，先执行以下操作：
 
@@ -308,15 +308,15 @@ update t1 set name='b1' where id =6;
 
 验证流程图如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0847-kG1emh.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0847-kG1emh.png)
 
 事务会话B对`id=6`的记录执行更新时，发现阻塞了，打开看下加了什么锁。发现是因为`id=6`这一行加了一个X型的记录锁
 
-![](https://xuemingde.com/pages/image/2022/05/06/0848-tcfUmz.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0848-tcfUmz.png)
 
 如果我们事务B不是对`id=6`执行更新，而是其他记录的话，是可以顺利执行的，如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0848-iVSpw0.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0848-iVSpw0.png)
 
 **结论就是**，在**RC（读已提交）** 的隔离级别下，对查询条件是主键id的场景，会加一个排他锁（X锁），或者说加一个X型的记录锁。
 
@@ -333,7 +333,7 @@ id是唯一索引，name是主键的场景下，我们给定SQL：`delete from t
 
 在RC隔离级别下，该SQL需要加两个`X`锁，一个对应于id 唯一索引上的`id = 6`的记录，另一把锁对应于聚簇索引上的`[name=’b’,id=6]`的记录。
 
-![](https://xuemingde.com/pages/image/2022/05/06/0848-ZWno4R.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0848-ZWno4R.png)
 
 **为什么主键索引上的记录也要加锁呢？**
 
@@ -354,7 +354,7 @@ insert into t3 values('a',1),('c',3),('b',6),('e',6),('d',9);
 
 加锁示意图如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0848-2QRBai.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0848-2QRBai.png)
 
 我们来验证一下，先开启事务会话A，先执行以下操作：
 
@@ -374,11 +374,11 @@ update t3 set id=7 where name ='e';
 
 实践流程如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0847-MVh31G.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0847-MVh31G.png)
 
 事务会话B为什么会阻塞等待超时，是因为事务会话A的`delete语句`确实有加**主键索引的X锁**
 
-![](https://xuemingde.com/pages/image/2022/05/06/0850-5TmKEB.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0850-5TmKEB.png)
 
 ### 查询条件列无索引+RC隔离级别
 
@@ -395,7 +395,7 @@ insert into t4 values('a',1),('c',3),('b',6),('e',6),('d',9);
 
 加锁示意图图下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0850-XHe3A7.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0850-XHe3A7.png)
 
 验证流程如下，先开启事务会话A，先执行以下操作：
 
@@ -417,7 +417,7 @@ update t4 set name='f' where id=6;
 
 验证结果如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0850-CdXVfD.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0850-CdXVfD.png)
 
 ### 查询条件是主键+RR隔离级别
 
@@ -440,7 +440,7 @@ insert into t5 values(5,5,5),(10,10,10),(15,15,15),(20,20,20),(25,25,25);
 
 如果一条更新语句`update t5 set d=d+1 where c = 10`，加锁示意图如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0902-qfPKDu.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0902-qfPKDu.png)
 
 我们来验证一下吧，先开启事务会话A，先执行以下操作：
 
@@ -459,7 +459,7 @@ insert into t5 values(12,12,12);
 
 验证流程图如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0902-39Kfd7.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0902-39Kfd7.png)
 
 为什么会阻塞呢？因此`c=10`这个记录更新时，不仅会有两把`X`锁，还会把区间`（10,15）`加间隙锁，因此要插入`（12,12,12）`记录时，会阻塞。
 
@@ -476,7 +476,7 @@ insert into t5 values(5,5,5),(10,10,10),(15,15,15),(20,20,20),(25,25,25);
 
 给定一条更新语句`update t5 set d=d+1 where c = 10`，因为`c`列没有索引，加锁示意图如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0902-WeELho.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0902-WeELho.png)
 
 如果查询条件列没有索引，主键索引的所有记录，都将加上`X锁`，每条记录间也都加上`间隙Gap锁`。大家可以想象一下，任何加锁并发的SQL，都是不能执行的，全表都是锁死的状态。如果表的数据量大，那效率就更低。
 
@@ -501,7 +501,7 @@ update t5 set d=d+1 where c = 16;
 
 我们去更新一条不存在的`c=16`的记录，也会被X锁阻塞的。验证如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0902-9Yheuk.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0902-9Yheuk.png)
 
 ### Serializable串行化
 
@@ -509,7 +509,7 @@ update t5 set d=d+1 where c = 16;
 
 如文章开始第一小节的那个例子，就是类似的：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0903-hHscAN.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0903-hHscAN.png)
 
 ## RR隔离级别下，加锁规则到底是怎样的呢？ 
 
@@ -546,11 +546,11 @@ insert into t5 values(0,0,0),(5,5,5),(10,10,10),(15,15,15),(20,20,20),(25,25,25)
 
 我们同时开启A、B、C三个会话事务，如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0903-I4wc17.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0903-I4wc17.png)
 
 发现事务B会阻塞等待，而C可以执行成功。如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0903-ciVgJv.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0903-ciVgJv.png)
 
 **为什么事务B会阻塞呢？**
 
@@ -566,11 +566,11 @@ insert into t5 values(0,0,0),(5,5,5),(10,10,10),(15,15,15),(20,20,20),(25,25,25)
 
 按顺序执行事务会话A、B、C，如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0903-K9ZEdt.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0903-K9ZEdt.png)
 
 发现事务B可以执行成功，而C阻塞等待。如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0904-qKvDbd.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0904-qKvDbd.png)
 
 **为什么事务会话B没有阻塞，事务会话C却阻塞了？**
 
@@ -592,11 +592,11 @@ select * from t5 where id>=10 and id<11 for update;
 
 按顺序执行事务会话A、B、C，如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0905-6KeA3e.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0905-6KeA3e.png)
 
 执行结果如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0904-he5Pzo.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0904-he5Pzo.png)
 
 发现事务会话B中，插入12，即`insert into t5 values(12,12,12);`时，阻塞了，而插入6，`insert into t5 values(6,6,6);`却可以顺利执行。同时事务C中，`Update t5 set d=d+1 where id =15;`也会阻塞，为什么呢？
 
@@ -612,11 +612,11 @@ select * from t5 where id>=10 and id<11 for update;
 
 如果是普通索引，范围查询又加什么锁呢？按顺序执行事务会话A、B、C，如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0847-q6kmuK.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0847-q6kmuK.png)
 
 执行结果如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0905-uPcab7.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0905-uPcab7.png)
 
 发现事务会话B和事务会话C的执行SQL都被阻塞了。
 
@@ -633,11 +633,11 @@ select * from t5 where id>=10 and id<11 for update;
 
 按顺序执行事务会话A、B、C，如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0905-caM9Bu.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0905-caM9Bu.png)
 
 执行结果如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0905-ARS7ah.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0905-ARS7ah.png)
 
 发现事务B的更新语句`Update t5 set d=d+1 where id =20; `和事务C`insert into t5 values(18,18,18);`的插入语句均已阻塞了。
 
@@ -657,24 +657,24 @@ insert into t5 values(28,10,66);
 
 则`c索引`树如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0906-TmNMbH.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0906-TmNMbH.png)
 
 c索引值有相等的，但是它们对应的主键是有间隙的。比如`（c=10，id=10）和（c=10，id=28）`之间。
 
 我们来看个例子，按顺序执行事务会话A、B、C，如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0906-56dH1p.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0906-56dH1p.png)
 
 执行结果如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0906-qHyOtb.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0906-qHyOtb.png)
 
 为什么事务B插入语句会阻塞，事务C的更新语句不会呢？
 
 * 这是因为事务会话A在遍历的时候，先访问第一个`c=10`的记录。它根据**原则 1**，加一个(c=5,id=5) 到 (c=10,id=10)的next-key lock。
 * 然后，事务会话A向右查找，直到碰到 (c=15,id=15) 这一行，循环才结束。根据优化 2，这是一个等值查询，向右查找到了不满足条件的行，所以会退化成`(c=10,id=10) 到 (c=15,id=15)`的间隙Gap锁。即事务会话A这个`select...for update`语句在索引 c 上的加锁范围，就是下图灰色阴影部分的：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0906-iQzyAT.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0906-iQzyAT.png)
 
 因为c=13是这个区间内的，所以事务B插入`insert into t5 values(13,13,13);`会阻塞。因为根据优化2，已经退化成 (c=10,id=10) 到 (c=15,id=15) 的间隙Gap锁,即不包括c=15，所以事务C，`Update t5 set d=d+1 where c=15`不会阻塞
 
@@ -688,17 +688,17 @@ Select * from t5 where c=10 limit 2 for update;
 
 事务A、B执行如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0906-e5VvVv.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0906-e5VvVv.png)
 
 发现事务B并没有阻塞，而是可以顺利执行
 
-![](https://xuemingde.com/pages/image/2022/05/06/0907-lvIaxm.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0907-lvIaxm.png)
 
 这是为什么呢？跟上个例子，怎么事务会话B的SQL却不会阻塞了，事务会话A的`select`只是加多了一个`limit 2`。
 
 这是因为明确加了`limit 2`的限制后，因此在遍历到 (c=10, id=30) 这一行之后，满足条件的语句已经有两条，循环就结束了。因此，索引 c上的加锁范围就变成了从（c=5,id=5) 到（c=10,id=30) 这个前开后闭区间，如下图所示：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0907-KZVQB0.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0907-KZVQB0.png)
 
 索引平时我们写SQL的时候，比如`查询select或者delete语句`时，尽量加一下`limit`哈，你看着这个例子不就减少了锁范围了嘛，哈哈。
 
@@ -721,7 +721,7 @@ Select * from t5 where c=10 limit 2 for update;
 
 我们在一个会话中执行加锁的语句，在另外一个会话窗口，即可查看`INNODB_TRX`的信息啦，如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0847-Zgg6SA.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0847-Zgg6SA.png)
 
 表中可以看到一个事务id为`1644837`正在运行汇中，它的隔离级别为`REPEATABLE READ`。我们一般关注这几个参数：
 
@@ -735,11 +735,11 @@ Select * from t5 where c=10 limit 2 for update;
 
 事务A、B执行如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0909-NTEzcV.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0909-NTEzcV.png)
 
 使用`select * from information_schema.INNODB_LOCKS;`查看
 
-![](https://xuemingde.com/pages/image/2022/05/06/0909-lWBKAm.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0909-lWBKAm.png)
 
 可以看到两个事务Id `1644842`和`1644843`都持有什么锁，就是看那个`lock_mode和lock_type`哈。但是并看不出是哪个锁在等待那个锁导致的阻塞，这时候就可以看`INNODB_LOCK_WAITS`表啦。
 
@@ -747,12 +747,12 @@ Select * from t5 where c=10 limit 2 for update;
 
 INNODB_LOCK_WAITS 表明每个事务是因为获取不到哪个事务持有的锁而阻塞。
 
-![](https://xuemingde.com/pages/image/2022/05/06/0909-GnpSfx.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0909-GnpSfx.png)
 
 * requesting_trx_id：表示因为获取不到锁而被阻塞的事务的事务id
 * blocking_trx_id：表示因为获取到别的事务需要的锁而导致其被阻塞的事务的事务Id。
 
-![](https://xuemingde.com/pages/image/2022/05/06/0910-K0s0xk.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0910-K0s0xk.png)
 
 即`requesting_trx_id`表示事务B的事务Id，`blocking_trx_id`表示事务A的事务Id。
 
@@ -768,7 +768,7 @@ set global  innodb_status_output_locks =on;
 
 在RR隔离级别下，我们交替执行事务A和B：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0910-fvUHhE.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0910-fvUHhE.png)
 
 show engine innodb status查看日志，如下：
 
@@ -835,7 +835,7 @@ insert into t6 values(5,5,5),(10,10,10);
 
 我们开启A、B事务，执行流程如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0847-ln71aR.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0847-ln71aR.png)
 
 ### 6.2 分析死锁日志
 
@@ -888,14 +888,14 @@ Record lock, heap no 2 PHYSICAL RECORD: n_fields 5; compact format; info bits 0
 
 1. 先找到关键词`TRANSACTION`，可以发现两部分的事务日志，如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0911-PPGGm6.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0911-PPGGm6.png)
 
 1. 查看正在执行，产生死锁的对应的SQL，如下：
 
-![](https://xuemingde.com/pages/image/2022/05/06/0847-Xg3rgj.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0847-Xg3rgj.png)
 
 1. 查看分开两部分的TRANSACTION，分别持有什么锁，和等待什么锁。
 
-![](https://xuemingde.com/pages/image/2022/05/06/0912-IadvAW.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/05/06/0912-IadvAW.png)
 
 所谓的死锁，其实就是，我持有你的需要的锁，你持有我需要的锁，形成相互等待的闭环。所以排查死锁问题时，照着这个思维去思考就好啦。

@@ -68,19 +68,19 @@ public class TestService1 {
 
 
 
-![图片](https://xuemingde.com/pages/image/2022/04/18/1018-nsvnDY.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/18/1018-nsvnDY.png)
 
 
 
 第二种情况：两个对象之间的直接依赖
 
-![图片](https://xuemingde.com/pages/image/2022/04/18/1018-P6klxc.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/18/1018-P6klxc.png)
 
 
 
 第三种情况：多个对象之间的间接依赖
 
-![图片](https://xuemingde.com/pages/image/2022/04/18/1018-4pepnI.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/18/1018-4pepnI.png)
 
 
 
@@ -92,7 +92,7 @@ public class TestService1 {
 
 spring中出现循环依赖主要有以下场景：
 
-![图片](https://xuemingde.com/pages/image/2022/04/18/1020-ABmjjy.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/18/1020-ABmjjy.png)
 
 ### 单例的setter注入
 
@@ -131,7 +131,7 @@ spring内部有三级缓存：
 
 下面用一张图告诉你，spring是如何解决循环依赖的：
 
-![图片](https://xuemingde.com/pages/image/2022/04/18/1021-HKc286.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/18/1021-HKc286.png)
 
 ​              图1
 
@@ -181,7 +181,7 @@ TestService1依赖于TestService2和TestService3，而TestService2依赖于TestS
 
 假设不用第二级缓存，TestService1注入到TestService3的流程如图：
 
-![](https://xuemingde.com/pages/image/2022/04/18/1103-WHZRkd.jpg)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/18/1103-WHZRkd.jpg)
 
 ​             
 
@@ -193,7 +193,7 @@ TestService1注入到TestService3又需要从第三级缓存中获取实例，�
 
 为了解决这个问题，spring引入的第二级缓存。上面图1其实TestService1对象的实例已经被添加到第二级缓存中了，而在TestService1注入到TestService3时，只用从第二级缓存中获取该对象即可。
 
-![图片](https://xuemingde.com/pages/image/2022/04/18/1022-gMDDPq.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/18/1022-gMDDPq.png)
 
 ​             
 
@@ -207,7 +207,7 @@ TestService1注入到TestService3又需要从第三级缓存中获取实例，�
 
 答案就在`AbstractAutowireCapableBeanFactory`类`doCreateBean`方法的这段代码中：
 
-![图片](https://xuemingde.com/pages/image/2022/04/18/1021-Bp2Wqp.png)它定义了一个匿名内部类，通过`getEarlyBeanReference`方法获取代理对象，其实底层是通过`AbstractAutoProxyCreator`类的`getEarlyBeanReference`生成代理对象。
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/18/1021-Bp2Wqp.png)它定义了一个匿名内部类，通过`getEarlyBeanReference`方法获取代理对象，其实底层是通过`AbstractAutoProxyCreator`类的`getEarlyBeanReference`生成代理对象。
 
 
 
@@ -244,7 +244,7 @@ public class TestService2 {
 
 其实在`AbstractApplicationContext`类的`refresh`方法中告诉了我们答案，它会调用`finishBeanFactoryInitialization`方法，该方法的作用是为了spring容器启动的时候提前初始化一些bean。该方法的内部又调用了`preInstantiateSingletons`方法
 
-![图片](https://xuemingde.com/pages/image/2022/04/18/1023-h6giqf.png)标红的地方明显能够看出：非抽象、单例 并且非懒加载的类才能被提前初始bean。
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/18/1023-h6giqf.png)标红的地方明显能够看出：非抽象、单例 并且非懒加载的类才能被提前初始bean。
 
 而多例即`SCOPE_PROTOTYPE`类型的类，非单例，不会被提前初始化bean，所以程序能够正常启动。
 
@@ -300,7 +300,7 @@ Requested bean is currently in creation: Is there an unresolvable circular refer
 
 出现了循环依赖，为什么呢？
 
-![图片](https://xuemingde.com/pages/image/2022/04/18/1025-bR1zAK.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/18/1025-bR1zAK.png)
 
 从图中的流程看出构造器注入没能添加到三级缓存，也没有使用缓存，所以也无法解决循环依赖问题。
 
@@ -344,11 +344,11 @@ org.springframework.beans.factory.BeanCurrentlyInCreationException: Error creati
 
 答案就在下面这张图中：
 
-![图片](https://xuemingde.com/pages/image/2022/04/18/1026-5g0uLD.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/18/1026-5g0uLD.png)
 
 说白了，bean初始化完成之后，后面还有一步去检查：第二级缓存 和 原始对象 是否相等。由于它对前面流程来说无关紧要，所以前面的流程图中省略了，但是在这里是关键点，我们重点说说：
 
-![图片](https://xuemingde.com/pages/image/2022/04/18/1026-7tKNpz.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/18/1026-7tKNpz.png)
 
 那位同事的问题正好是走到这段代码，发现第二级缓存 和 原始对象不相等，所以抛出了循环依赖的异常。
 
@@ -379,7 +379,7 @@ what？ 这又是为什么？
 
 答案在下面这张图中：
 
-![图片](https://xuemingde.com/pages/image/2022/04/18/1026-jUaYl2.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/18/1026-jUaYl2.png)
 
 这种情况testService6中其实第二级缓存是空的，不需要跟原始对象判断，所以不会抛出循环依赖。
 
@@ -426,7 +426,7 @@ Circular depends-on relationship between 'testService2' and 'testService1'
 
 答案在`AbstractBeanFactory`类的`doGetBean`方法的这段代码中：
 
-![图片](https://xuemingde.com/pages/image/2022/04/18/1027-K1l3xz.png)它会检查dependsOn的实例有没有循环依赖，如果有循环依赖则抛异常。
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/18/1027-K1l3xz.png)它会检查dependsOn的实例有没有循环依赖，如果有循环依赖则抛异常。
 
 
 
@@ -434,7 +434,7 @@ Circular depends-on relationship between 'testService2' and 'testService1'
 
 项目中如果出现循环依赖问题，说明是spring默认无法解决的循环依赖，要看项目的打印日志，属于哪种循环依赖。目前包含下面几种情况：
 
-![图片](https://xuemingde.com/pages/image/2022/04/18/1027-k19B41.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/18/1027-k19B41.png)
 
 ### 生成代理对象产生的循环依赖
 

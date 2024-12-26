@@ -1,6 +1,6 @@
 # MYSQL基本架构
 
- ![UgE8KY](https://xuemingde.com/pages/image/2022/03/05/UgE8KY.png)
+ ![UgE8KY](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/05/UgE8KY.png)
 
 
 

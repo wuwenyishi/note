@@ -1,6 +1,6 @@
 我们知道 Kafka 网络通信架构使用到了 Java NIO 以及 Reactor 设计模式。我们先从整体上看一下完整的网络通信层架构，如下图所示：
 
-![图片](https://xuemingde.com/pages/image/2022/04/10/0957-7aENgd.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/10/0957-7aENgd.png)
 
 > 1）从上图中我们可以看出，Kafka 网络通信架构中用到的组件主要由两大部分构成：`SocketServer 和 RequestHandlerPool`。
 >
@@ -14,7 +14,7 @@
 
 在经典的 Reactor 设计模式有个「**Dispatcher**」的角色，`主要用来接收外部请求并分发给下面的实际处理线程`。在 Kafka 网络架构设计中，这个 Dispatcher 就是「**Acceptor 线程**」, 用来接收和创建外部 TCP 连接的线程。在 Broker 端每个 SocketServer 实例只会创建一个 Acceptor 线程。`它的主要功能就是创建连接，并将接收到的 Request 请求传递给下游的 Processor 线程处理`。
 
-![图片](https://xuemingde.com/pages/image/2022/04/10/0958-SHDgkB.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/10/0958-SHDgkB.png)
 
 > 1）我们可以看出 Acceptor 线程主要使用了 Java NIO 的 Selector 以及 SocketChannel 的方式循环的轮询准备就绪的 I/O 事件。
 >
@@ -36,9 +36,9 @@ Acceptor 只是做了请求入口连接处理的，那么，`真正创建网络�
 >
 > 3）**ResponseQueue 队列：**它主要是存放需要返回给Request 发送方的所有 Response 对象。每个 Processor 线程都会维护自己的 Response 队列。
 
-![图片](https://xuemingde.com/pages/image/2022/04/10/1000-Vza3z2.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/10/1000-Vza3z2.png)
 
-![图片](https://xuemingde.com/pages/image/2022/04/10/1000-x5A3wg.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/10/1000-x5A3wg.png)
 
 
 
@@ -48,7 +48,7 @@ Acceptor 只是做了请求入口连接处理的，那么，`真正创建网络�
 
 Acceptor 线程和 Processor 线程只是请求和响应的「**搬运工**」，而「**真正处理 Kafka 请求**」是 `KafkaRequestHandlerPool` 线程池，在上面网络超高并发通信架构图，有两个参数跟整个流程有关系，分别是「`num.network.threads`」、「`num.io.threads`」。其中 num.io.threads 就是 I/O 工作线程池的大小配置。
 
-​        ![图片](https://xuemingde.com/pages/image/2022/04/10/1001-NqZsqB.png)
+​        ![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/10/1001-NqZsqB.png)
 
 
 
@@ -92,7 +92,7 @@ Acceptor 线程和 Processor 线程只是请求和响应的「**搬运工**」�
 
 
 
-![图片](https://xuemingde.com/pages/image/2022/04/10/1003-2UplC7.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/10/1003-2UplC7.png)
 
 
 
@@ -102,7 +102,7 @@ Acceptor 线程和 Processor 线程只是请求和响应的「**搬运工**」�
 
 接下来我们来看看 Kafka 日志存储结构：
 
-![图片](https://xuemingde.com/pages/image/2022/04/10/1004-DqnnDS.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/10/1004-DqnnDS.png)
 
 
 
@@ -114,7 +114,7 @@ Acceptor 线程和 Processor 线程只是请求和响应的「**搬运工**」�
 
 
 
-![图片](https://xuemingde.com/pages/image/2022/04/10/1004-2KZQhv.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/10/1004-2KZQhv.png)
 
 
 
@@ -124,7 +124,7 @@ Acceptor 线程和 Processor 线程只是请求和响应的「**搬运工**」�
 
 接下来我们来看看日志消息写入磁盘的整体过程如下图所示：
 
-![图片](https://xuemingde.com/pages/image/2022/04/10/1005-Tad6Ll.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/10/1005-Tad6Ll.png)
 
 
 
@@ -134,7 +134,7 @@ Acceptor 线程和 Processor 线程只是请求和响应的「**搬运工**」�
 
 
 
-![图片](https://xuemingde.com/pages/image/2022/04/10/1005-ikMfte.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/10/1005-ikMfte.png)
 
 
 
@@ -162,13 +162,13 @@ Kafka 作为大型系统架构中重要的一环，有着举足轻重的作用�
 
 如果想要更好的监控主机性能的话，有以下两个教程可以学习和参考：
 
-![图片](https://xuemingde.com/pages/image/2022/04/10/1006-p36iiv.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/10/1006-p36iiv.png)
 
 
 
 
 
-![图片](https://xuemingde.com/pages/image/2022/04/10/1006-X46ebB.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/10/1006-X46ebB.png)
 
 
 
@@ -234,11 +234,11 @@ Kafka 作为大型系统架构中重要的一环，有着举足轻重的作用�
 
 首先是提升吞吐量参数和措施：
 
-![image-20220410101150338](https://xuemingde.com/pages/image/2022/04/10/1011-xiyY76.png)
+![image-20220410101150338](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/10/1011-xiyY76.png)
 
-![image-20220410101218929](https://xuemingde.com/pages/image/2022/04/10/1012-TlxxM5.png)
+![image-20220410101218929](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/10/1012-TlxxM5.png)
 
-![image-20220410101239687](https://xuemingde.com/pages/image/2022/04/10/1012-nCB2xr.png)
+![image-20220410101239687](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/10/1012-nCB2xr.png)
 
 
 

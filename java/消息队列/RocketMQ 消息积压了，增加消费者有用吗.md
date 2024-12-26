@@ -6,11 +6,11 @@
 
 **我**：如果消费者的数量小于 MessageQueue 的数量，增加消费者可以加快消息消费速度，减少消息积压。比如一个 Topic 有 4 个 MessageQueue，2 个消费者进行消费，如果增加一个消费者，明细可以加快拉取消息的频率。如下图：
 
-![图片](https://xuemingde.com/pages/image/2022/04/11/1057-EAQoGV.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/11/1057-EAQoGV.png)
 
 如果消费者的数量大于等于 MessageQueue 的数量，增加消费者是没有用的。比如一个 Topic 有 4 个 MessageQueue，并且有 4 个消费者进行消费。如下图
 
-![图片](https://xuemingde.com/pages/image/2022/04/11/1057-Uu40Ny.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/11/1057-Uu40Ny.png)
 
 **面试官**：你说的第一种情况，增加消费者一定能加快消息消费的速度吗？
 
@@ -77,7 +77,7 @@
 
 **我**：其实延迟拉取的`本质就是消费者消费慢`，导致下次去拉取的时候 ProcessQueue 中积压的消息超过阈值。以下面这张架构图为例：
 
-![图片](https://xuemingde.com/pages/image/2022/04/11/1059-yKOaQS.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/11/1059-yKOaQS.png)
 
 消费者消费慢，可是能下面的原因：
 
@@ -120,7 +120,7 @@
 
 比如 4 个 MessageQueue 和 3 个消费者的情况：
 
-![图片](https://xuemingde.com/pages/image/2022/04/11/1103-dHKsfY.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/11/1103-dHKsfY.png)
 
 源代码的逻辑非常简单，如下：
 
@@ -147,7 +147,7 @@ for (int i = 0; i < range; i++) {
 
 这个很容易理解，遍历消费者，把 MessageQueue 分一个给遍历到的消费者，如果 MessageQueue 数量比消费者多，需要进行多次遍历，遍历次数等于  （MessageQueue 数量/消费者数量），还是以 4 个 MessageQueue 和 3 个消费者的情况，如下图：
 
-![图片](https://xuemingde.com/pages/image/2022/04/11/1103-4fvcvc.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/11/1103-4fvcvc.png)
 
 ```java
 //AllocateMessageQueueAveragelyByCircle 这个类
@@ -177,7 +177,7 @@ consumer.start();
 
 这种方式 Consumer 只消费指定机房的 MessageQueue，如下图：Consumer0、Consumer1、Consumer2 绑定 room1 和 room2 这两个机房，而 room3 这个机房没有消费者。
 
-![图片](https://xuemingde.com/pages/image/2022/04/11/1104-xQcBq5.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/11/1104-xQcBq5.png)
 
 Consumer 启动的时候需要绑定机房名称。可以参考下面代码：
 
@@ -207,7 +207,7 @@ for (MessageQueue mq : mqAll) {
 
 跟按照机房分配原则相比，就近分配的好处是可以对没有消费者的机房进行分配。如下图，机房 3 的 MessageQueue 也分配到了消费者：
 
-![图片](https://xuemingde.com/pages/image/2022/04/11/1105-GcF8UO.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/11/1105-GcF8UO.png)
 
 如果一个机房没有消费者，则会把这个机房的 MessageQueue 分配给集群中所有的消费者。
 
@@ -217,7 +217,7 @@ for (MessageQueue mq : mqAll) {
 
 把所有的消费者经过 Hash 计算分布到 Hash 环上，对所有的 MessageQueue  进行 Hash  计算，找到顺时针方向最近的消费者节点进行绑定。如下图：
 
-![图片](https://xuemingde.com/pages/image/2022/04/11/1105-5VDzq8.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/11/1105-5VDzq8.png)
 
 
 源代码如下：

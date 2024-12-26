@@ -1,6 +1,6 @@
 > 原文：[Docker下RabbitMQ延时队列实战两部曲之二：细说开发](https://xie.infoq.cn/article/50307d9ccf7c5a3f9eba6cb7f)
 
-![](https://xuemingde.com/pages/image/2022/06/03/1124QWMauu.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/06/03/1124QWMauu.png)
 
 
 
@@ -19,17 +19,17 @@
 
 整体部署情况如下：
 
-![](https://xuemingde.com/pages/image/2022/06/03/1125YmrCjd.png) 
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/06/03/1125YmrCjd.png) 
 
 上述脚本和工程的源码都可以在 github 下载，地址和链接信息如下表所示：
 
 这个 git 项目中有多个文件夹，三个 SpringBoot 工程分别在 delayrabbitmqconsumer、messagettlproducer、queuettlproducer 这三个文件夹下，如下图的三个红框所示：
 
-![](https://xuemingde.com/pages/image/2022/06/03/1126if9cLf.png) 
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/06/03/1126if9cLf.png) 
 
 docker-compose.yml 文件在 rabbitmq_docker_files 文件夹下面的 delaymq 文件夹下，如下图：
 
-![](https://xuemingde.com/pages/image/2022/06/03/1126iKUR8H.png) 
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/06/03/1126iKUR8H.png) 
 
 
 

@@ -2,7 +2,7 @@
 
 ### Kafka 整体架构图
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1102-jB6bMF.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1102-jB6bMF.png)
 
 一个典型的 Kafka 集群中包含若干 Producer，若干 Broker「`Kafka支持水平扩展，一般 Broker 数量越多，集群吞吐率越高`」，若干 Consumer Group，以及一个 Zookeeper集群。
 
@@ -14,7 +14,7 @@ Kafka 通过 Zookeeper 管理集群配置，选举 Leader，以及在 Consumer G
 
 ### Kafka 存储机制
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1104-3TFhEL.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1104-3TFhEL.png)
 
 Producer 端生产的消息会不断追加到 log 文件末尾，这样文件就会越来越大, 为了防止 log 文件过大导致数据定位效率低下，Kafka 采取了分片和索引机制。
 
@@ -32,7 +32,7 @@ Producer 端生产的消息会不断追加到 log 文件末尾，这样文件就
 
 ### Kafka 副本机制
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1106-LIXgWy.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1106-LIXgWy.png)
 
 Kafka中的 Partition 为了保证数据安全，每个 Partition 可以设置多个副本。此时我们对分区0,1,2分别设置3个副本。而且每个副本都是有「`角色`」之分的，`它们会选取一个副本作为 Leader 副本，而其他的作为 Follower 副本`，我们的 Producer 端在发送数据的时候，只能发送到Leader Partition 里面 ，然后 Follower Partition 会去  Leader Partition 自行同步数据, Consumer 消费数据的时候，也只能从 Leader 副本那去消费数据的。
 
@@ -40,7 +40,7 @@ Kafka中的 Partition 为了保证数据安全，每个 Partition 可以设置�
 
 ### Kafka 网络模型
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1108-cuVayj.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1108-cuVayj.png)
 
 Kafka 采用多路复用方案，Reactor 设计模式，并引用 Java NIO 的方式更好的解决网络超高并发请求问题。
 
@@ -58,7 +58,7 @@ Kafka 采用多路复用方案，Reactor 设计模式，并引用 Java NIO 的�
 
 整个发送过程图如下所示：
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1109-hKDJ5D.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1109-hKDJ5D.png)
 
 **Kafka Producer 发送消息流程如下**：
 
@@ -92,7 +92,7 @@ Kafka 采用多路复用方案，Reactor 设计模式，并引用 Java NIO 的�
 
 `试想一下，在回收内存垃圾的时候，工作线程还在不断的往内存里写数据，那如何让JVM 回收垃圾呢？`我们看看下面这张图就更加清楚了：
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1112-t0PQaN.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1112-t0PQaN.png)
 
 虽然现在 JVM GC 演进越来越先进，从 CMS 垃圾回收器到 G1 垃圾回收器，`核心的目标之一就是不断的缩减垃圾回收的时候，导致其他工作线程停顿的时间`。但是再先进的垃圾回收器这个停顿的时间还是存在的。
 
@@ -110,9 +110,9 @@ Kafka 采用多路复用方案，Reactor 设计模式，并引用 Java NIO 的�
 
 我们看看下面这张图就更加清楚了：
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1116-5yWo2x.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1116-5yWo2x.png)
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1117-j0gteO.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1117-j0gteO.png)
 
 一旦使用了这个缓冲池机制之后，就不涉及到频繁的大量内存的 GC 问题了。
 
@@ -128,13 +128,13 @@ Kafka 采用多路复用方案，Reactor 设计模式，并引用 Java NIO 的�
 
 对于 Kafka 来说，当消息从 Producer 到 Consumer，有许多因素来影响消息的消费，因此「`消息传递语义`」就是 Kafka 提供的 Producer 和 Consumer 之间的消息传递过程中消息传递的保证性。主要分为三种， 如下图所示：
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1118-eogRgs.jpeg)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1118-eogRgs.jpeg)
 
 
 
 对于这三种语义，我们来看一下可能出现的场景：
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1118-2W86JT.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1118-2W86JT.png)
 
 
 
@@ -164,9 +164,9 @@ Kafka 采用多路复用方案，Reactor 设计模式，并引用 Java NIO 的�
 
 
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1121-kMQFze.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1121-kMQFze.png)
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1121-jOqsh8.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1121-jOqsh8.png)
 
 
 
@@ -198,7 +198,7 @@ Consumer 消费消息时，有以下2种选择:
 
 
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1123-92qV6d.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1123-92qV6d.png)
 
 ### 副本同步机制
 
@@ -218,7 +218,7 @@ Consumer 消费消息时，有以下2种选择:
 
 
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1125-A7BEEJ.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1125-A7BEEJ.png)
 
 
 
@@ -242,7 +242,7 @@ Kafka 为了解决这个问题， 引入了「 **In-sync Replicas**」机制，�
 
 首先要明确的，Leader 副本天然就在 ISR 副本集合中。也就是说，ISR 不只是有 Follower 副本集合，它必然包括 Leader 副本。另外，能够进入到 ISR 副本集合的 Follower 副本要满足一定的条件。
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1126-mBDiIQ.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1126-mBDiIQ.png)
 
 图中有 3 个副本：1 个 Leader 副本和 2 个 Follower 副本。Leader 副本当前写入了 6 条消息，Follower1  副本同步了其中的 4 条消息，而 Follower2 副本只同步了其中的 3 条消息。那么，对于这 2 个 Follower 副本，你觉得哪个  Follower 副本与 Leader 不同步？
 
@@ -332,7 +332,7 @@ Kafka 为了解决这个问题， 引入了「 **In-sync Replicas**」机制，�
 
 ### 控制器数据分布
 
-![1132-XtrOlE](https://xuemingde.com/pages/image/2022/04/09/1132-l7T1Os.png)
+![1132-XtrOlE](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1132-l7T1Os.png)
 
 从上面表格可以看出,存储的大概有3大类:
 
@@ -356,7 +356,7 @@ Kafka 为了解决这个问题， 引入了「 **In-sync Replicas**」机制，�
 
 下面通过一张图来展示控制器故障转移的过程：
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1133-yarAzV.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1133-yarAzV.png)
 
 
 
@@ -410,7 +410,7 @@ Kafka 为了解决这个问题， 引入了「 **In-sync Replicas**」机制，�
 
 其实选举最终都是通过调用底层的 elect 方法进行选举，如下图所示：
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1136-lra2F8.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1136-lra2F8.png)
 
 
 
@@ -424,7 +424,7 @@ Kafka 为了解决这个问题， 引入了「 **In-sync Replicas**」机制，�
 
 
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1137-xMwgU3.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1137-xMwgU3.png)
 
 
 
@@ -444,7 +444,7 @@ Kafka 为了解决这个问题， 引入了「 **In-sync Replicas**」机制，�
 
 
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1137-JexxNf.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1137-JexxNf.png)
 
 
 
@@ -472,7 +472,7 @@ Kafka Broker 会在**内存中为每个分区都缓存 Leader Epoch 数据**，�
 
 接下来, 我们来看下如何利用 Leader Epoch 机制来规避这种数据丢失。如下图所示:
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1138-wdHb98.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1138-wdHb98.png)
 
 
 
@@ -484,7 +484,7 @@ Kafka Broker 会在**内存中为每个分区都缓存 Leader Epoch 数据**，�
 
 
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1139-ygE1jr.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1139-ygE1jr.png)
 
 这里主要说的是**消费的分区分配策略**，我们知道一个 Consumer Group 中有多个 Consumer，一个 Topic 也有多个 Partition，所以必然会有 Partition 分配问题「 **确定哪个 Partition 由哪个 Consumer 来消费的问题**」。
 
@@ -500,9 +500,9 @@ Kafka 客户端提供了3 种分区分配策略：RangeAssignor、RoundRobinAssi
 
 **分区分配场景分析如下图所示（同一个消费者组下的多个 consumer）：**
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1141-HeOa2X.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1141-HeOa2X.png)
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1141-WDb11i.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1141-WDb11i.png)
 
 
 
@@ -520,11 +520,11 @@ Kafka 客户端提供了3 种分区分配策略：RangeAssignor、RoundRobinAssi
 
 **1) 当组内每个 Consumer 订阅的相同 Topic ：**
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1142-VQUTaw.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1142-VQUTaw.png)
 
  **2) 当组内每个订阅的不同的 Topic ，这样就可能会造成分区订阅的倾斜:**
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1143-4QBLYi.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1143-4QBLYi.png)
 
 
 
@@ -548,17 +548,17 @@ Kafka 客户端提供了3 种分区分配策略：RangeAssignor、RoundRobinAssi
 
 1）组内每个 Consumer 订阅的相同的 Topic ，RoundRobinAssignor 跟StickyAssignor 分配一致：
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1145-sl6JNK.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1145-sl6JNK.png)
 
 **当发生 Rebalance 情况后，可能分配会不太一样，假如这时候C1发生故障下线：**
 
 **RoundRobinAssignor：**
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1145-w3iSze.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1145-w3iSze.png)
 
 **StickyAssignor**
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1146-woSiuw.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1146-woSiuw.png)
 
 
 
@@ -570,25 +570,25 @@ Kafka 客户端提供了3 种分区分配策略：RangeAssignor、RoundRobinAssi
 
 **RoundRobinAssignor：**
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1147-O04CtK.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1147-O04CtK.png)
 
 
 
 **StickyAssignor**：
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1148-4ceydf.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1148-4ceydf.png)
 
 **当发生 Rebalance 情况后，可能分配会不太一样，假如这时候C1发生故障下线：**
 
 **RoundRobinAssignor：**
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1148-b4AYOl.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1148-b4AYOl.png)
 
 
 
 **StickyAssignor：**
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1149-rLbj0n.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1149-rLbj0n.png)
 
 
 
@@ -668,7 +668,7 @@ Rebalance 触发后如何通知其他 Consumer 进程？
 
 5种状态流转图如下：
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1153-gTWZRv.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1153-gTWZRv.png)
 
 
 
@@ -686,7 +686,7 @@ Rebalance 触发后如何通知其他 Consumer 进程？
 
 
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1154-gZhBei.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1154-gZhBei.png)
 
 
 
@@ -698,7 +698,7 @@ Leader 开始分配消费方案，`即哪个 Consumer 负责消费哪些 Topic �
 
 
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1155-E4Jbcx.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1155-E4Jbcx.png)
 
 
 
@@ -714,7 +714,7 @@ Leader 开始分配消费方案，`即哪个 Consumer 负责消费哪些 Topic �
 
 这里新成员加入组是指组处于 Stable 稳定状态后，有新成员加入的情况。当协调者收到新的 JoinGroup 请求后，它会通过心跳机制通知组内现有的所有成员，强制开启新一轮的重平衡。
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1156-fR76r7.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1156-fR76r7.png)
 
 
 
@@ -724,7 +724,7 @@ Leader 开始分配消费方案，`即哪个 Consumer 负责消费哪些 Topic �
 
 这里主动离组是指消费者所在线程或进程调用 close() 方法主动通知协调者它要退出。当协调者收到 LeaveGroup 请求后，依然会以心跳机制通知其他成员，强制开启新一轮的重平衡。
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1156-tzCaWi.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1156-tzCaWi.png)
 
 
 
@@ -734,7 +734,7 @@ Leader 开始分配消费方案，`即哪个 Consumer 负责消费哪些 Topic �
 
 这里超时被踢出组是指消费者实例出现故障或者处理逻辑耗时过长导致的离组。此时离组是被动的，协调者需要等待一段时间才能感知到，**一般是由消费者端参数 session.timeout.ms 控制的**。
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1157-4FAVNu.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1157-4FAVNu.png)
 
 
 
@@ -744,7 +744,7 @@ Leader 开始分配消费方案，`即哪个 Consumer 负责消费哪些 Topic �
 
 当重平衡开启时，协调者会要求组内成员必须在这段缓冲时间内快速地提交自己的位移信息，然后再开启正常的 JoinGroup/SyncGroup 请求发送。
 
-![图片](https://xuemingde.com/pages/image/2022/04/09/1157-KbV0VC.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/09/1157-KbV0VC.png)
 
 
 

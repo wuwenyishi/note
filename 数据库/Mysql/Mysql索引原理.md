@@ -13,13 +13,13 @@
 
 （1）没有索引的情况下访问数据：
 
-![1300-9A9kOW](https://xuemingde.com/pages/image/2022/04/07/1300-vn2lXu.jpg)
+![1300-9A9kOW](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1300-vn2lXu.jpg)
 
   
 
 （2）使用平衡二叉树结构作为索引的情况下访问数据：
 
-![1300-EQ6HD3](https://xuemingde.com/pages/image/2022/04/07/1300-0sjTWg.jpg)  
+![1300-EQ6HD3](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1300-0sjTWg.jpg)  
 
 第一张图没有使用索引我们会进行顺序查找，依照数据顺序逐个进行匹配，进行了5次寻址才查询出所需数据，第二张图用了一个简单的平衡二叉树索引之后我们只用了3次，这还是数据量小的情况下，数据量大了效果更明显，所以总结来说创建索引就是为了加快数据查找速度；
 
@@ -48,23 +48,23 @@ Mysql 的默认存储引擎innodb使用B+树作为索引的存储结构，为了
 
 如果使用链表来存储数据，那么必须要解决的一个问题就是要解决链表的查询效率问题，我们必须通过一种算法来解决链表查找数据慢的问题，而这里这里就用到了二分查找法，利用二分法思维把链表拆成N个对半分的节点，然后形成了一个数据结构叫二叉查找树，使用了二分法思维衍生出来的树大大提升了查找的性能。
 
-![1301-Bnp6DL](https://xuemingde.com/pages/image/2022/04/07/1301-cjA5NX.jpg)
+![1301-Bnp6DL](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1301-cjA5NX.jpg)
 
 ### **3、从二叉查树到平衡二叉树**
 
 二叉查找树极大的提升了链表查找数据的效率，不过我们又发现了一个问题，就是二叉查找树的“高度”不可控，一旦树的节点插入变成向下图一样的结构。
 
-![1301-4hsdTc](https://xuemingde.com/pages/image/2022/04/07/1301-vTHEoc.jpg)  
+![1301-4hsdTc](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1301-vTHEoc.jpg)  
 
 如果树的节点不可控编程变成线性结构，那么就会极大的降低我们的查询效率，所以我们就又需要一种算法来保证二叉树节点的平衡，让树的节点高度差不会太大，这个时候就衍生了一些平衡算法，最终我们的二叉树就有像AVL树和红黑树这些新产品，我们也称这些新产品为平衡二叉树，，平衡二叉树通常会保证树的左右两边的节点层级相差不会大于2。
 
   
 
-![1301-I8F42Y](https://xuemingde.com/pages/image/2022/04/07/1301-2pzIIa.jpg)
+![1301-I8F42Y](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1301-2pzIIa.jpg)
 
   
 
-![](https://xuemingde.com/pages/image/2022/04/07/1302-j9YcaM.jpg)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1302-j9YcaM.jpg)
 
   
 
@@ -76,7 +76,7 @@ B树相对平衡二叉树最大的一个改变，就是B树的每个节点可存
 
    
 
-![1302-0YutJJ](https://xuemingde.com/pages/image/2022/04/07/1302-U1Ng5z.jpg)
+![1302-0YutJJ](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1302-U1Ng5z.jpg)
 
   
 
@@ -112,7 +112,7 @@ B树相对平衡二叉树最大的一个改变，就是B树的每个节点可存
 
 **排序和范围查询更方便**：B+树所有的叶子节点数据构成了一个有序链表，这样在进行数据排序和询范围大小查询数据的时候更方便，数据紧密性也更高。
 
-![1302-WFyIHT](https://xuemingde.com/pages/image/2022/04/07/1302-rYU3bq.jpg)  
+![1302-WFyIHT](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/04/07/1302-rYU3bq.jpg)  
 
 **（百度百科算法结构示意图）**
 

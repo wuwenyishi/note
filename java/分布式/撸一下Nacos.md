@@ -22,13 +22,13 @@ Nacos Client 主要的作用是订阅获取服务实例信息以及配置信息�
 
 在 Nacos中最重要的就是服务，为了方便管理还引入了**数据模型**这个概念，数据模型主要分为**命名空间**、**集群**、**服务**。
 
-![图片](https://xuemingde.com/pages/image/2022/03/31/141103.jpeg)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/31/141103.jpeg)
 
 数据模型主要作用是给服务分类，方便维护管理。如果觉得抽象，简单举个例子：假如你叫张三，生活在武汉，国籍是中国，在其他城市或者省也有张三这个人。
 
 # Nacos 注册中心原理
 
-![图片](https://xuemingde.com/pages/image/2022/03/31/141114.jpeg)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/31/141114.jpeg)
 
 服务注册成功后，为了向 Nacos Server 报告自己的健康状态，客户端每5秒向 Nacos server发送一次心跳，心跳带上了服务名，服务ip，服务端口等信息。当然 Nacos server 也会向 client 主动发起健康检查，支持tcp/http检查。
 
@@ -52,7 +52,7 @@ Nacos Client 主要的作用是订阅获取服务实例信息以及配置信息�
 
 目前最新的稳定版本是 2.0.4，直接下载 zip 包或者 tar.gz包即可，windows 和 Linux 均可运行。
 
-![图片](https://xuemingde.com/pages/image/2022/03/31/141124.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/31/141124.png)
 
 解压完毕，如果是 Linux 系统，执行以下命令，以单实例的方式运行：
 
@@ -96,17 +96,17 @@ Nacos Server 运行成功后我们可以打开后台管理界面，查看其运�
 
 第一次打开默认进入后台登录界面，默认用户名和密码都是：**nacos**
 
-![图片](https://xuemingde.com/pages/image/2022/03/31/141137.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/31/141137.png)
 
 登录成功后可以看到左侧的菜单栏，主要功能有：**配置管理**、**服务管理**、**权限管理**、**命名空间**、**集群管理**。
 
-![图片](https://xuemingde.com/pages/image/2022/03/31/141149.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/31/141149.png)
 
 **（1）服务管理**
 
 Nacos 的主要功能分为两块：**配置管理**和**服务管理**，这次主要展开讲解服务管理。
 
-![图片](https://xuemingde.com/pages/image/2022/03/31/141200.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/31/141200.png)
 
 展开菜单后，有**服务列表**和**订阅者列表**两块，服务列表会显示所有注册到 Nacos Server 的服务，包括实例数、实例健康状态等信息。
 
@@ -116,19 +116,19 @@ Nacos 的主要功能分为两块：**配置管理**和**服务管理**，这次
 
 权限控制主要的作用是维护管理后台系统的用户角色和权限，一般的系统都有这个功能，这里不再赘述了。
 
-![图片](https://xuemingde.com/pages/image/2022/03/31/141212.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/31/141212.png)
 
 **（3）命名空间**
 
 命名空间比较好理解，比如同样一个服务ServiceA可能会在研发环境、集成测试环境、生产环境各自部署一套，那如何区分它们呢？命名空间可以起这个作用，在下图中，我新建了好几个命名空间，用于将服务的注册订阅信息在逻辑上隔离开来。
 
-![图片](https://xuemingde.com/pages/image/2022/03/31/141223.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/31/141223.png)
 
 **（4）集群管理**
 
 Nacos Server可以是集群部署的也可以是单机部署，在实际生产环境中为了防止单点故障我们肯定不可能部署一个节点，为了方便测试演示，我在本地只启动了一个节点，下图中可以看到这个节点的ip、状态等信息。
 
-![图片](https://xuemingde.com/pages/image/2022/03/31/141236.png)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/31/141236.png)
 
 ## 学习使用 Nacos Client SDK
 
@@ -148,7 +148,7 @@ Nacos Server可以是集群部署的也可以是单机部署，在实际生产�
 
 上面讲过 Nacos 主要分为两块大的功能：**配置中心**、**注册中心**，为了方便使用，Nacos-client 提供了三个工厂类：`NacosFactory`、`ConfigFactory`、`NamingFactory`，使用这些工厂类很容易生成对应实例对象。
 
-![图片](https://xuemingde.com/pages/image/2022/03/31/141256.jpeg)
+![图片](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/31/141256.jpeg)
 
 NacosFactory 包含了 ConfigFactory 和 NamingFactory的所有功能，如果你想创建一个注册中心功能的实例，你可以使用：
 

@@ -100,6 +100,7 @@ private List<Menu> getChildrens(Menu root, List<Menu> all) {
 
 格式化打印结果:  
 
-![1045-YbMIJ3](https://xuemingde.com/pages/image/2022/04/13/1045-YbMIJ3.jpg)
+![](https://mmbiz.qlogo.cn/mmbiz_jpg/3eqXwttvOLvED4MbUa8NsovrpXwicGqwyneKuXDfoZXQCUIr9AplalV6ACwPFuYelGY0ChGVygTp16SAeN67xrg/0?wx_fmt=jpeg&from=appmsg)
 
 ***
+

@@ -1,7 +1,7 @@
 
 # 总流程图
 
-![](https://xuemingde.com/pages/image/2022/03/09/ufeQLe.jpg)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/09/ufeQLe.jpg)
 
 
 
@@ -130,9 +130,9 @@ ResourceLoaderAware, BeanFactoryAware, EnvironmentAware, Ordered {
 
 我们一直点下去，就可以找到最后的幕后英雄，就是SpringFactoriesLoader类，通过loadSpringFactories()方法加载META-INF/spring.factories中的配置类。
 
-![](https://xuemingde.com/pages/image/2022/03/09/EaiL64.jpg)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/09/EaiL64.jpg)
 
-![](https://xuemingde.com/pages/image/2022/03/09/HbEGa5.jpg)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/09/HbEGa5.jpg)
 
 这里使用了spring.factories文件的方式加载配置类，提供了很好的扩展性。
 
@@ -140,7 +140,7 @@ ResourceLoaderAware, BeanFactoryAware, EnvironmentAware, Ordered {
 
 
 
-![](https://xuemingde.com/pages/image/2022/03/09/9AKjzk.jpg)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/09/9AKjzk.jpg)
 
 
 
@@ -158,7 +158,7 @@ public @interface AutoConfigurationPackage {
 }
 ```
 
-![](https://xuemingde.com/pages/image/2022/03/09/K5nsWR.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/09/K5nsWR.png)
 
 
 

@@ -91,6 +91,6 @@ static class Entry extends WeakReference<ThreadLocal<?>> {
             }
         }
 ```
-![](https://xuemingde.com/pages/image/others/WvXOry.png)  
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/others/WvXOry.png)  
 此图说明了，在 `ThreadLocal<CanisterInfo> tl = new ThreadLocal<>();` 并且 `tl.set(new CanisterInfo());`后有一个强引用tl指向了ThreadLocal对象，也有一个弱引用（ThreadLocalMap的key）也指向了ThreadLocal。  
 为什么Entry会使用弱引用，图中也说明了。

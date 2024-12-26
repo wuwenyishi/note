@@ -13,7 +13,7 @@ Handler dispatch failed; nested exception is java.lang.NoSuchMethodError: org.ap
 
 
 
-![OfMAOd](https://xuemingde.com/pages/image/2022/03/08/OfMAOd.png)
+![OfMAOd](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2022/03/08/OfMAOd.png)
 
 
 

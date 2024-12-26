@@ -4,7 +4,7 @@
 
 如下图所示：
 
-![](https://xuemingde.com/pages/image/2023/10/18/084506S4jE0c.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2023/10/18/084506S4jE0c.png)
 
 其中对象头中的Mark Word中的详细信息在文章synchronized锁升级原理中有详细介绍。上图中的对齐填充不是一定有的，如果对象头和实例数据加起来刚好是8字节的倍数，那么就不需要对齐填充。
 
@@ -43,7 +43,7 @@ public class HeapMemory {
 
 输出结果如下：
 
-![](https://xuemingde.com/pages/image/2023/10/18/085037Hn1vqZ.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2023/10/18/085037Hn1vqZ.png)
 
 最后的结果是16字节，没有问题，这是因为**`默认开启了指针压缩`**，那我们现在把指针压缩关闭之后再去试试。
 
@@ -52,11 +52,11 @@ public class HeapMemory {
 -XX:-UseCompressedOops  关闭指针压缩
 ```
 
-![](https://xuemingde.com/pages/image/2023/10/18/085355lpYvrI.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2023/10/18/085355lpYvrI.png)
 
 得到如下结果：
 
-![](https://xuemingde.com/pages/image/2023/10/18/085421uRv3Tm.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2023/10/18/085421uRv3Tm.png)
 
 可以看到，这时候已经没有了对齐填充部分了，但是占用大小还是16位。
 
@@ -116,11 +116,11 @@ public class HeapMemory {
 
 开启指针压缩,占用16字节：
 
-![](https://xuemingde.com/pages/image/2023/10/18/0900167BAefi.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2023/10/18/0900167BAefi.png)
 
 关闭指针压缩，占用24字节：
 
-![](https://xuemingde.com/pages/image/2023/10/18/090103h7bETx.png)
+![](https://github.com/wuwenyishi/pages/raw/gh-pages/image/2023/10/18/090103h7bETx.png)
 
 这个时候就能看出来开启了指针压缩的优势了，**如果不断创建大量对象，指针压缩对性能还是有一定优化的**。
 
