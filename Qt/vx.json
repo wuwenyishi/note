@@ -230,6 +230,26 @@
             "signature": "7957746292873801779",
             "tags": [
             ]
+        },
+        {
+            "attachment_folder": "",
+            "created_time": "2024-12-26T01:33:31Z",
+            "id": "340",
+            "modified_time": "2024-12-26T01:33:31Z",
+            "name": ".keep",
+            "signature": "11705405914934456939",
+            "tags": [
+            ]
+        },
+        {
+            "attachment_folder": "",
+            "created_time": "2024-12-26T01:33:36Z",
+            "id": "342",
+            "modified_time": "2024-12-26T01:33:36Z",
+            "name": ".DS_Store",
+            "signature": "1840444688376312432",
+            "tags": [
+            ]
         }
     ],
     "folders": [
@@ -237,7 +257,7 @@
             "name": "vx_notebook"
         }
     ],
-    "id": "191",
+    "id": "341",
     "modified_time": "2024-12-26T01:24:02Z",
     "signature": "17978719182802169906",
     "version": 3
